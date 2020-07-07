@@ -4,7 +4,7 @@
 \alias{Rmd_to_md}
 \title{Convert Rmd files to md and copy the md contents to the clipboard}
 \usage{
-Rmd_to_md(Rmd_file, course, working_dir, clipboard = TRUE)
+Rmd_to_md(Rmd_file, course, working_dir, clipboard = TRUE, quiet = TRUE)
 }
 \arguments{
 \item{Rmd_file}{the name of the Rmd file to be converted to md.}
@@ -14,6 +14,8 @@ Rmd_to_md(Rmd_file, course, working_dir, clipboard = TRUE)
 \item{working_dir}{the path to the working directory.}
 
 \item{clipboard}{should the contents of the html file be copied to the clipboard? Default is \code{TRUE}.}
+
+\item{quiet}{suppress printing of progress? Default is \code{TRUE}.}
 }
 \description{
 Convert Rmd files to md and copy the md contents to the clipboard

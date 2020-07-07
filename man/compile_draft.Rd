@@ -9,7 +9,8 @@ compile_draft(
   courses = c("datascience", "morse", "mathstat"),
   include_source_names = TRUE,
   keep_source = FALSE,
-  output_format = "html"
+  output_format = "html",
+  quiet = TRUE
 )
 }
 \arguments{
@@ -30,6 +31,8 @@ md file each part of the draft corresponds to? Default is
 after compilation? Default is \code{FALSE}.}
 
 \item{output_format}{either \code{"html"} (default), \code{"word"}, or \code{"pdf"}.}
+
+\item{quiet}{suppress printing of progress? Default is \code{TRUE}.}
 }
 \description{
 Compile a handbook draft

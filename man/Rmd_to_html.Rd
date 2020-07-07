@@ -4,7 +4,7 @@
 \alias{Rmd_to_html}
 \title{Convert Rmd files to html and copy the html contents to the clipboard ready to be pasted on sitebuilder}
 \usage{
-Rmd_to_html(Rmd_file, course, working_dir, clipboard = TRUE)
+Rmd_to_html(Rmd_file, course, working_dir, clipboard = TRUE, quiet = TRUE)
 }
 \arguments{
 \item{Rmd_file}{the name of the Rmd file to be converted to html.}
@@ -14,6 +14,8 @@ Rmd_to_html(Rmd_file, course, working_dir, clipboard = TRUE)
 \item{working_dir}{the path to the working directory.}
 
 \item{clipboard}{should the contents of the html file be copied to the clipboard? Default is \code{TRUE}.}
+
+\item{quiet}{suppress printing of progress? Default is \code{TRUE}.}
 }
 \description{
 Convert Rmd files to html and copy the html contents to the clipboard ready to be pasted on sitebuilder
