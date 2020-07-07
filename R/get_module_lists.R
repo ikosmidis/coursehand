@@ -10,6 +10,7 @@
 #'     `"List D"`, `"List E"`, `"List F"`, `"Optional"`.
 #' @param bsc either "Yes" (default) or "No", indicating whether the request is about a list that is available for a BSc course or not.
 #' @param mlevel either "Yes" (default) or "No", indicating whether the request is about a list that is available for an M-level  course or not.
+#' @export
 get_module_list <- function(module_list,
                             course = "datascience",
                             stream = NA,
@@ -25,7 +26,6 @@ get_module_list <- function(module_list,
     list <- match.arg(list, c("Core", paste("List", LETTERS[1:6]), "Optional"))
     bsc <- match.arg(bsc, c("Yes", "No"))
     mlevel <- match.arg(mlevel, c("Yes", "No"))
-
     if (isTRUE(is.character(module_list))) {
         module_list <- read.csv(module_list, stringsAsFactors = FALSE)
     }

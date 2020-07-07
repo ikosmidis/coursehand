@@ -5,6 +5,7 @@
 #' @param working_dir the path to the working directory.
 #' @param clipboard should the contents of the html file be copied to the clipboard? Default is `TRUE`.
 #' @param quiet suppress printing of progress? Default is `TRUE`.
+#' @export
 Rmd_to_md <- function(Rmd_file,
                       course,
                       working_dir,
@@ -45,6 +46,7 @@ Rmd_to_md <- function(Rmd_file,
 #' @param working_dir the path to the working directory.
 #' @param clipboard should the contents of the html file be copied to the clipboard? Default is `TRUE`.
 #' @param quiet suppress printing of progress? Default is `TRUE`.
+#' @export
 Rmd_to_html <- function(Rmd_file,
                         course,
                         working_dir,

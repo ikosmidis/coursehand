@@ -14,6 +14,7 @@
 #'     after compilation? Default is `FALSE`.
 #' @param output_format either `"html"` (default), `"word"`, or `"pdf"`.
 #' @param quiet suppress printing of progress? Default is `TRUE`.
+#' @export
 compile_draft <- function(working_dir,
                           courses = c("datascience", "morse", "mathstat"),
                           include_source_names = TRUE,

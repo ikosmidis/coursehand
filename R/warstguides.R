@@ -20,7 +20,6 @@
 #' @importFrom stats setNames
 #' @import dplyr
 #'
-#'
 NULL
 
 utils::globalVariables(c("Course", "Year", "List", "BSc", "Mlevel", "Stream", "URL", "Notes",
