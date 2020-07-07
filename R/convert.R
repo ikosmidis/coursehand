@@ -39,7 +39,7 @@ Rmd_to_md <- function(Rmd_file,
     }
 }
 
-#' Convert Rmd files to html and copy the html contents to the clipboard ready to be pasted on sitebuilder
+#' Convert Rmd files to html and copy the html contents to the clipboard ready to be pasted on Sitebuilder
 #'
 #' @param Rmd_file the name of the Rmd file to be converted to html.
 #' @param course one of "datascience", "morse", "mathstat" or "common".

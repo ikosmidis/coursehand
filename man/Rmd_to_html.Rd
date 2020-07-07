@@ -2,7 +2,7 @@
 % Please edit documentation in R/convert.R
 \name{Rmd_to_html}
 \alias{Rmd_to_html}
-\title{Convert Rmd files to html and copy the html contents to the clipboard ready to be pasted on sitebuilder}
+\title{Convert Rmd files to html and copy the html contents to the clipboard ready to be pasted on Sitebuilder}
 \usage{
 Rmd_to_html(Rmd_file, course, working_dir, clipboard = TRUE, quiet = TRUE)
 }
@@ -18,5 +18,5 @@ Rmd_to_html(Rmd_file, course, working_dir, clipboard = TRUE, quiet = TRUE)
 \item{quiet}{suppress printing of progress? Default is \code{TRUE}.}
 }
 \description{
-Convert Rmd files to html and copy the html contents to the clipboard ready to be pasted on sitebuilder
+Convert Rmd files to html and copy the html contents to the clipboard ready to be pasted on Sitebuilder
 }

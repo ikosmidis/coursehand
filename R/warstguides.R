@@ -2,11 +2,11 @@
 #' Statistics at University of Warwick
 #'
 #' Provides methods and functions to maintain and export the course
-#' handbooks of the Department of Statistics at Unviersity of Warwick
+#' handbooks of the Department of Statistics at University of Warwick
 #' using Rmarkdown files. The package depends on a particular
-#' organization of the content, so it wil; most probably not me of any
-#' use to anyone outside the Department of Statistics at Unviersity of
-#' Warwick.
+#' organization of the content, so it will, most probably, not be of
+#' any immediate use to anyone outside the Department of Statistics at
+#' University of Warwick.
 #'
 #' @author Ioannis Kosmidis \email{ioannis.kosmidis@warwick.ac.uk}
 #'
