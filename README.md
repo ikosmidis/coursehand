@@ -4,11 +4,11 @@ warstguides
 ===========
 
 **warstguides** provides methods and functions to maintain and export
-the course handbooks of the Department of Statistics at Unviersity of
+the course handbooks of the Department of Statistics at University of
 Warwick using Rmarkdown files. The package depends on a particular
 organization of the content, so it will, most probably, not be of any
 immediate use to anyone outside the Department of Statistics at
-Unviersity of Warwick.
+University of Warwick.
 
 Installation
 ------------
@@ -27,7 +27,7 @@ This is a basic example which shows you some of the methods in
 
     library("warstguides")
 
-First, we need to specify whetre the directory structure with the
+First, we need to specify where the directory structure with the
 handbook files is. For example, in my machine this is
 
     working_dir <- "~/Repositories/warwick-stats-handbooks"
@@ -118,11 +118,11 @@ uses. For example, the Data Science course handbook can be found
 
 We can update the handbook pages one-by-one by converting the
 corresponding file into html format, copy that html content into the
-clipboard, and then paste itto the `html` window that Sitebuilder
+clipboard, and then paste into the `html` window that Sitebuilder
 provides. The conversion and the copying can be done using the
 `Rmd_to_html()` functions. For example, the content for
 `https://warwick.ac.uk/fac/sci/statistics/currentstudents/handbooks/morse/year4mmorse-g30b/`
-can be updated by editting `0210-year4mmorse-g30b.Rmd` and doing
+can be updated by editing `0210-year4mmorse-g30b.Rmd` and doing
 
     Rmd_to_html("0210-year4mmorse-g30b.Rmd",
                 course = "morse",
@@ -131,7 +131,7 @@ can be updated by editting `0210-year4mmorse-g30b.Rmd` and doing
 
 Finally, we can compile drafts of the full handbook for the courses. The
 output is in the `drafts/` sub-directory under `working_directory`. For
-example, the folloing command compiles the handbooks for the Data
+example, the following command compiles the handbooks for the Data
 Science, MORSE and MathStat courses of the Department of Statistics at
 University of Warwick into html format. The output is specifically
 marked to indicate from which Rmd file each part of the content comes
