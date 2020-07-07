@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "ioannis.kosmidis@warwick.ac.uk",
            comment = c(ORCID = "0000-0003-1556-0302"))
-Description: Provides methods and functions to maintain and export the course handbooks of the Department of Statistics at Unviersity of Warwick using Rmarkdown files. The package depends on a particular organization of the content, so it wil; most probably not me of any use to anyone outside the Department of Statistics at Unviersity of Warwick.
+Description: Provides methods and functions to maintain and export the course handbooks of the Department of Statistics at Unviersity of Warwick using Rmarkdown files. The package depends on a particular organization of the content, so it will, most probably, not be of any immediate use to anyone outside the Department of Statistics at Unviersity of Warwick.
 License: MIT + file LICENSE
 Imports: clipr, dplyr, knitr, readr, rmarkdown
 Encoding: UTF-8

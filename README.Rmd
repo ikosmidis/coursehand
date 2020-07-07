@@ -1,0 +1,66 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# warstguides
+
+**warstguides** provides methods and functions to maintain and export the course handbooks of the Department of Statistics at Unviersity of Warwick using Rmarkdown files. The package depends on a particular organization of the content, so it will, most probably, not be of any immediate use to anyone outside the Department of Statistics at Unviersity of Warwick.
+
+## Installation
+
+You can install the development version from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("ikosmidis/warstguides")
+```
+## Example
+
+This is a basic example which shows you some of the methods in **warstguides**.
+
+```{r example}
+library("warstguides")
+```
+
+First, we need to specify whetre the directory structure with the handbook files is. For example, in my machine this is
+```{r}
+working_dir <- "~/Repositories/warwick-stats-handbooks"
+```
+
+Then, we can list the available Rmd files for the various courses. For example,
+```{r}
+list_course_Rmd(working_dir, "datascience")
+list_course_Rmd(working_dir, "mathstat")
+list_course_Rmd(working_dir, "morse", full_path = FALSE)
+```
+We can also list the files for the common part in each handbook
+```{r}
+list_course_Rmd(working_dir, "common", full_path = FALSE)
+```
+
+The handbooks of the Department of Statistics at University of Warwick in the 19/20 and 20/21 session have online versions. For example, the Data Science course handbook can be found [here](https://warwick.ac.uk/fac/sci/statistics/currentstudents/handbooks/datascience). We can update those pages one-by-one by coverting the corresponding file into html format, copy that html content into the clipboard and then paste it to Warwick's content management system. All this can be done using the `Rmd_to_html()` functions. For example the content for `https://warwick.ac.uk/fac/sci/statistics/currentstudents/handbooks/morse/year4mmorse-g30b/` can be updated by editting `0210-year4mmorse-g30b.Rmd` and doing
+```{r}
+Rmd_to_html("0210-year4mmorse-g30b.Rmd",
+            course = "morse",
+            working_dir = working_dir)
+```
+
+Finally, we can compile drafts of the full handbook for the courses. The output is in the `drafts/` sub-directory under `working_directory`. For example, the folloing command compiles the handbooks for the Data Science, MORSE and MathStat courses of the Department of Statistics at University of Warwick into html format. The output is specifically marked to indicate from which Rmd file each part of the content comes from. 
+```{r}
+compile_draft(working_dir = working_dir,
+              courses = c("datascience", "morse", "mathstat"),
+              include_source_names = TRUE,
+              keep_source = FALSE,
+              output_format = "html")
+```
