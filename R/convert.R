@@ -4,10 +4,12 @@
 #' @param course one of "datascience", "morse", "mathstat" or "common".
 #' @param working_dir the path to the working directory.
 #' @param clipboard should the contents of the html file be copied to the clipboard? Default is `TRUE`.
+#' @param quiet suppress printing of progress? Default is `TRUE`.
 Rmd_to_md <- function(Rmd_file,
                       course,
                       working_dir,
-                      clipboard = TRUE) {
+                      clipboard = TRUE,
+                      quiet = TRUE) {
     md_dir <- paste(working_dir, "drafts",  "Rmd_to_md", sep = "/")
     if (!dir.exists(md_dir)) {
         dir.create(md_dir, recursive = TRUE)
@@ -21,7 +23,8 @@ Rmd_to_md <- function(Rmd_file,
     Rmd_file <- paste(working_dir, course, "Rmd", Rmd_file, sep = "/")
     out_format <- rmarkdown::md_document(toc = FALSE,
                                          pandoc_args = "--columns=10000")
-    rmarkdown::render(Rmd_file, output_format = out_format, output_file = md_file)
+    rmarkdown::render(Rmd_file, output_format = out_format, output_file = md_file,
+                      quiet = quiet)
     if (isTRUE(clipboard)) {
         o <- try(clipr::write_clip(readr::read_file(md_file)))
         if (inherits(o, "try-error")) {
@@ -41,10 +44,12 @@ Rmd_to_md <- function(Rmd_file,
 #' @param course one of "datascience", "morse", "mathstat" or "common".
 #' @param working_dir the path to the working directory.
 #' @param clipboard should the contents of the html file be copied to the clipboard? Default is `TRUE`.
+#' @param quiet suppress printing of progress? Default is `TRUE`.
 Rmd_to_html <- function(Rmd_file,
                         course,
                         working_dir,
-                        clipboard = TRUE) {
+                        clipboard = TRUE,
+                        quiet = TRUE) {
     Rmd_to_md(Rmd_file, course, working_dir, clipboard = FALSE)
     html_dir <- paste(working_dir, "drafts",  "Rmd_to_html", sep = "/")
     if (!dir.exists(html_dir)) {
@@ -52,7 +57,7 @@ Rmd_to_html <- function(Rmd_file,
     }
     html_file <- paste(html_dir, gsub(".Rmd", ".html", Rmd_file), sep = "/")
     md_file <- paste(working_dir, "drafts", "Rmd_to_md", gsub(".Rmd", ".md", Rmd_file), sep = "/")
-    rmarkdown::pandoc_convert(md_file, to = "html", output = html_file)
+    rmarkdown::pandoc_convert(md_file, to = "html", output = html_file, verbose = !quiet)
     if (isTRUE(clipboard)) {
         o <- try(clipr::write_clip(readr::read_file(html_file)))
         if (inherits(o, "try-error")) {

@@ -13,11 +13,13 @@
 #' @param keep_source should the draft md files be kept or deleted
 #'     after compilation? Default is `FALSE`.
 #' @param output_format either `"html"` (default), `"word"`, or `"pdf"`.
+#' @param quiet suppress printing of progress? Default is `TRUE`.
 compile_draft <- function(working_dir,
                           courses = c("datascience", "morse", "mathstat"),
                           include_source_names = TRUE,
                           keep_source = FALSE,
-                          output_format = "html") {
+                          output_format = "html",
+                          quiet = TRUE) {
     if (!all(courses %in% c("datascience", "morse", "mathstat")))
         stop("`courses` should be at least one of 'datascience', 'morse', and 'mathstat'")
     ## Try to get the module list
@@ -75,7 +77,8 @@ compile_draft <- function(working_dir,
                 cat(note(x = f, type = "END", color = "red", output_format = output_format), file = master_md, append = TRUE)
             }
         }
-        rmarkdown::render(master_md, output_dir = drafts, output_format = out_format)
+        rmarkdown::render(master_md, output_dir = drafts, output_format = out_format,
+                          quiet = quiet)
         if (!isTRUE(keep_source)) file.remove(master_md)
     }
 }
