@@ -139,39 +139,3 @@ from.
                   include_source_names = TRUE,
                   keep_source = FALSE,
                   output_format = "html")
-    #> Warning in call_block(x): The chunk 'unnamed-chunk-1' has the 'child' option,
-    #> and this code chunk must be empty. Its code will be ignored.
-    #> Warning in call_block(x): The chunk 'unnamed-chunk-2' has the 'child' option,
-    #> and this code chunk must be empty. Its code will be ignored.
-    #> Warning in call_block(x): The chunk 'unnamed-chunk-3' has the 'child' option,
-    #> and this code chunk must be empty. Its code will be ignored.
-    #> Warning in call_block(x): The chunk 'unnamed-chunk-4' has the 'child' option,
-    #> and this code chunk must be empty. Its code will be ignored.
-    #> Warning in call_block(x): The chunk 'unnamed-chunk-5' has the 'child' option,
-    #> and this code chunk must be empty. Its code will be ignored.
-    #> Warning in call_block(x): The chunk 'unnamed-chunk-6' has the 'child' option,
-    #> and this code chunk must be empty. Its code will be ignored.
-    #> Warning in call_block(x): The chunk 'unnamed-chunk-1' has the 'child' option,
-    #> and this code chunk must be empty. Its code will be ignored.
-    #> Warning in call_block(x): The chunk 'unnamed-chunk-2' has the 'child' option,
-    #> and this code chunk must be empty. Its code will be ignored.
-    #> Warning in call_block(x): The chunk 'unnamed-chunk-3' has the 'child' option,
-    #> and this code chunk must be empty. Its code will be ignored.
-    #> Warning in call_block(x): The chunk 'unnamed-chunk-4' has the 'child' option,
-    #> and this code chunk must be empty. Its code will be ignored.
-    #> Warning in call_block(x): The chunk 'unnamed-chunk-5' has the 'child' option,
-    #> and this code chunk must be empty. Its code will be ignored.
-    #> Warning in call_block(x): The chunk 'unnamed-chunk-6' has the 'child' option,
-    #> and this code chunk must be empty. Its code will be ignored.
-    #> Warning in call_block(x): The chunk 'unnamed-chunk-1' has the 'child' option,
-    #> and this code chunk must be empty. Its code will be ignored.
-    #> Warning in call_block(x): The chunk 'unnamed-chunk-2' has the 'child' option,
-    #> and this code chunk must be empty. Its code will be ignored.
-    #> Warning in call_block(x): The chunk 'unnamed-chunk-3' has the 'child' option,
-    #> and this code chunk must be empty. Its code will be ignored.
-    #> Warning in call_block(x): The chunk 'unnamed-chunk-4' has the 'child' option,
-    #> and this code chunk must be empty. Its code will be ignored.
-    #> Warning in call_block(x): The chunk 'unnamed-chunk-5' has the 'child' option,
-    #> and this code chunk must be empty. Its code will be ignored.
-    #> Warning in call_block(x): The chunk 'unnamed-chunk-6' has the 'child' option,
-    #> and this code chunk must be empty. Its code will be ignored.

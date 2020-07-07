@@ -57,7 +57,7 @@ Rmd_to_html("0210-year4mmorse-g30b.Rmd",
 ```
 
 Finally, we can compile drafts of the full handbook for the courses. The output is in the `drafts/` sub-directory under `working_directory`. For example, the folloing command compiles the handbooks for the Data Science, MORSE and MathStat courses of the Department of Statistics at University of Warwick into html format. The output is specifically marked to indicate from which Rmd file each part of the content comes from. 
-```{r}
+```{r, warning = FALSE}
 compile_draft(working_dir = working_dir,
               courses = c("datascience", "morse", "mathstat"),
               include_source_names = TRUE,

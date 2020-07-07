@@ -62,7 +62,7 @@ compile_draft <- function(working_dir,
                 cat(note(x = f, type = "BEGIN", color = "red", output_format = output_format), file = master_md, append = TRUE)
             }
             cat("```{r child = '", f, "'}\n", sep = "", file = master_md, append = TRUE)
-            cat("```\n", file = master_md, append = TRUE)
+            cat("```\n\n", file = master_md, append = TRUE)
             if (isTRUE(include_source_names)) {
                 cat(note(x = f, type = "END", color = "red", output_format = output_format), file = master_md, append = TRUE)
             }
@@ -72,7 +72,7 @@ compile_draft <- function(working_dir,
                 cat(note(x = f, type = "BEGIN", color = "red", output_format = output_format), file = master_md, append = TRUE)
             }
             cat("```{r child = '", f, "'}\n", sep = "", file = master_md, append = TRUE)
-            cat("```\n", file = master_md, append = TRUE)
+            cat("```\n\n", file = master_md, append = TRUE)
             if (isTRUE(include_source_names)) {
                 cat(note(x = f, type = "END", color = "red", output_format = output_format), file = master_md, append = TRUE)
             }
