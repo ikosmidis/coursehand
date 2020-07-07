@@ -111,13 +111,16 @@ We can also list the files for the common part in each handbook
     #> [45] "0450-universitycontacts.Rmd"
 
 The handbooks of the Department of Statistics at University of Warwick
-in the 19/20 and 20/21 session have online versions. For example, the
-Data Science course handbook can be found
+in the 19/20 and 20/21 session have online versions created using the
+Sitebuilder, the content management system that University of Warwick
+uses. For example, the Data Science course handbook can be found
 [here](https://warwick.ac.uk/fac/sci/statistics/currentstudents/handbooks/datascience).
-We can update those pages one-by-one by coverting the corresponding file
-into html format, copy that html content into the clipboard and then
-paste it to Warwick’s content management system. All this can be done
-using the `Rmd_to_html()` functions. For example the content for
+
+We can update the handbook pages one-by-one by converting the
+corresponding file into html format, copy that html content into the
+clipboard, and then paste itto the `html` window that Sitebuilder
+provides. The conversion and the copying can be done using the
+`Rmd_to_html()` functions. For example, the content for
 `https://warwick.ac.uk/fac/sci/statistics/currentstudents/handbooks/morse/year4mmorse-g30b/`
 can be updated by editting `0210-year4mmorse-g30b.Rmd` and doing
 
