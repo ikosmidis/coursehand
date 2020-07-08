@@ -20,3 +20,6 @@ Rmd_to_md(Rmd_file, course, working_dir, clipboard = TRUE, quiet = TRUE)
 \description{
 Convert Rmd files to md and copy the md contents to the clipboard
 }
+\author{
+Ioannis Kosmidis \link{aut, cre} \email{ioannis.kosmidis@warwick.ac.uk}
+}

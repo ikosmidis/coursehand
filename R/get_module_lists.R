@@ -8,8 +8,18 @@
 #' @param year either 1 (default), 2, 3, or 4.
 #' @param list one of `"Core"`, `"List A"`, `"List B"`, `"List C"`,
 #'     `"List D"`, `"List E"`, `"List F"`, `"Optional"`.
-#' @param bsc either "Yes" (default) or "No", indicating whether the request is about a list that is available for a BSc course or not.
-#' @param mlevel either "Yes" (default) or "No", indicating whether the request is about a list that is available for an M-level  course or not.
+#' @param bsc either "Yes" (default) or "No", indicating whether the
+#'     request is about a list that is available for a BSc course or
+#'     not.
+#' @param mlevel either "Yes" (default) or "No", indicating whether
+#'     the request is about a list that is available for an M-level
+#'     course or not.
+#' @param everything if `TRUE` all filtering options are bypassed and
+#'     the contents of `module_list.csv` or simply `module_list` is
+#'     returned. Default is `FALSE`.
+#'
+#' @author Ioannis Kosmidis [aut, cre] \email{ioannis.kosmidis@warwick.ac.uk}
+#'
 #' @export
 get_module_list <- function(module_list,
                             course = "datascience",
@@ -17,7 +27,8 @@ get_module_list <- function(module_list,
                             year = 1,
                             list = "Core",
                             bsc = "Yes",
-                            mlevel = "Yes") {
+                            mlevel = "Yes",
+                            everything = FALSE) {
     stopifnot("`year` must be one of `1`, `2`, `3`, `4" = year %in% c(1, 2, 3, 4))
     course <- match.arg(course, c("datascience", "morse", "mathstat"))
     if (!is.na(stream)) {
@@ -30,14 +41,16 @@ get_module_list <- function(module_list,
         module_list <- read.csv(module_list, stringsAsFactors = FALSE)
     }
     stopifnot("`module_list` must be either a path to the module lists or a `data.frame`" = isTRUE(is.data.frame(module_list)))
-    if (is.na(stream)) {
-        out <- module_list %>% filter(Course == course, Year == year, List == list, BSc == bsc, Mlevel == mlevel)
+    if (!isTRUE(everything)) {
+        if (is.na(stream)) {
+            module_list <- module_list %>% filter(Course == course, Year == year, List == list, BSc == bsc, Mlevel == mlevel)
+        }
+        else {
+            module_list <- module_list %>% filter(Course == course, Stream == stream, Year == year, List == list, BSc == bsc, Mlevel == mlevel)
+        }
     }
-    else {
-        out <- module_list %>% filter(Course == course, Stream == stream, Year == year, List == list, BSc == bsc, Mlevel == mlevel)
-    }
-    class(out) <- c("module_list", class(out))
-    out
+    class(module_list) <- c("module_list", class(module_list))
+    module_list
 }
 
 #' Print a module list as a markdown pipe table
@@ -46,6 +59,8 @@ get_module_list <- function(module_list,
 #' @param include a subset of `"Code"`, `"Name"`, `"CATS"`, `"Term"`,
 #'     `"Req"`, `"Other_Streams"`
 #' @param ... currently not used
+#'
+#' @author Ioannis Kosmidis [aut, cre] \email{ioannis.kosmidis@warwick.ac.uk}
 #'
 #' @export
 print.module_list <- function(x,
@@ -89,4 +104,35 @@ check_module_list <- function(module_list) {
       no_AND_issues_term = length(grep(" &| &", module_list$Term)) == 0,
       ## Check that there are no " &", "& "
       max_code_nchar_is_6 = max(nchar(module_list$Code)) == 6)
+}
+
+
+#' Various modes of analyses for module lists
+#'
+#' @param x an object of class `module_list` as produced by
+#'     [`get_module_list`].
+#' @param type `"module_code_xtabs"` for cross-tabulation of department
+#'     and level of the modules in `x`.
+#'
+#' @details
+#'
+#' The intention is to add more modes of analyses for `module_list`
+#' objects.
+#'
+#' @return
+#'
+#' If `type = "module_code_xtabs"`, a cross-tabulation of departments
+#' and module levels as according to the module coding used at
+#' University of Warwick. See
+#' \url{https://warwick.ac.uk/fac/sci/statistics/currentstudents/handbooks/morse/modulecodes/}
+#' for details.
+#'
+#' @author Ioannis Kosmidis [aut, cre] \email{ioannis.kosmidis@warwick.ac.uk}
+#' @export
+summary.module_list <- function(x, type = "module_code_xtabs", ...) {
+    type <- match.arg(type, c("module_code_xtabs"))
+    code <- unique(module_list$Code)
+    department <- substr(code, 0, 2)
+    level <- substr(code, 3, 3)
+    xtabs(~ level + department)
 }

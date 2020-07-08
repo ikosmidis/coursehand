@@ -11,7 +11,8 @@ get_module_list(
   year = 1,
   list = "Core",
   bsc = "Yes",
-  mlevel = "Yes"
+  mlevel = "Yes",
+  everything = FALSE
 )
 }
 \arguments{
@@ -28,10 +29,21 @@ get_module_list(
 \item{list}{one of \code{"Core"}, \code{"List A"}, \code{"List B"}, \code{"List C"},
 \code{"List D"}, \code{"List E"}, \code{"List F"}, \code{"Optional"}.}
 
-\item{bsc}{either "Yes" (default) or "No", indicating whether the request is about a list that is available for a BSc course or not.}
+\item{bsc}{either "Yes" (default) or "No", indicating whether the
+request is about a list that is available for a BSc course or
+not.}
 
-\item{mlevel}{either "Yes" (default) or "No", indicating whether the request is about a list that is available for an M-level  course or not.}
+\item{mlevel}{either "Yes" (default) or "No", indicating whether
+the request is about a list that is available for an M-level
+course or not.}
+
+\item{everything}{if \code{TRUE} all filtering options are bypassed and
+the contents of \code{module_list.csv} or simply \code{module_list} is
+returned. Default is \code{FALSE}.}
 }
 \description{
 Filter out particular module lists from a master list
+}
+\author{
+Ioannis Kosmidis \link{aut, cre} \email{ioannis.kosmidis@warwick.ac.uk}
 }

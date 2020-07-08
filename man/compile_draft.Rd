@@ -37,3 +37,6 @@ after compilation? Default is \code{FALSE}.}
 \description{
 Compile a handbook draft
 }
+\author{
+Ioannis Kosmidis \link{aut, cre} \email{ioannis.kosmidis@warwick.ac.uk}
+}

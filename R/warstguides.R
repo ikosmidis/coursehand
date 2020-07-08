@@ -17,8 +17,10 @@
 #' @importFrom knitr kable
 #' @importFrom readr read_file
 #' @importFrom utils read.csv
-#' @importFrom stats setNames
+#' @importFrom stats setNames xtabs
 #' @import dplyr
+#'
+#' @author Ioannis Kosmidis [aut, cre] \email{ioannis.kosmidis@warwick.ac.uk}
 #'
 NULL
 

@@ -17,3 +17,6 @@
 \description{
 Print a module list as a markdown pipe table
 }
+\author{
+Ioannis Kosmidis \link{aut, cre} \email{ioannis.kosmidis@warwick.ac.uk}
+}
