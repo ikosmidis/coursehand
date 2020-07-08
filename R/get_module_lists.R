@@ -83,7 +83,7 @@ print.module_list <- function(x,
     counter <- 0
     for (i in seq.int(nrow(x))) {
         counter <- counter + 1
-        if (x$duplicated_ID[i]) {
+        if (dupl[i]) {
             x <- x %>% add_row(Name = "OR", .before = counter)
             counter <- counter + 1
         }
