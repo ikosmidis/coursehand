@@ -57,7 +57,7 @@ get_module_list <- function(module_list,
 #'
 #' @param x the output of [`get_module_list`]
 #' @param include a subset of `"Code"`, `"Name"`, `"CATS"`, `"Term"`,
-#'     `"Req"`, `"Other_Streams"`
+#'     `"Req"`, `"Source"`
 #' @param ... currently not used
 #'
 #' @author Ioannis Kosmidis [aut, cre] \email{ioannis.kosmidis@warwick.ac.uk}
@@ -66,8 +66,8 @@ get_module_list <- function(module_list,
 print.module_list <- function(x,
                               include = c("Code", "Name", "CATS", "Term"),
                               ...) {
-    exists <- all(include %in% c("Code", "Name", "CATS", "Term", "Req", "Other_Streams"))
-    stopifnot("`include` can include at least one of 'Code', 'Name', 'CATS', 'Term', 'Req', 'Other_Streams'" = isTRUE(exists))
+    exists <- all(include %in% c("Code", "Name", "CATS", "Term", "Req", "Source"))
+    stopifnot("`include` can include at least one of 'Code', 'Name', 'CATS', 'Term', 'Req', 'Source'" = isTRUE(exists))
     urls <- x$URL
     notes <- x$Notes
     ids <- x$ID
@@ -99,7 +99,7 @@ print.module_list <- function(x,
 check_module_list <- function(module_list) {
     c(year_is_numeric = is.numeric(module_list$Year),
       ## Check for numeric year
-      no_AND_issues_streams = length(grep(" &| &", module_list$Other_Streams)) == 0,
+      no_AND_issues_streams = length(grep(" &| &", module_list$Source)) == 0,
       ## Check that there are no " &", "& " in other streams
       no_AND_issues_term = length(grep(" &| &", module_list$Term)) == 0,
       ## Check that there are no " &", "& "
