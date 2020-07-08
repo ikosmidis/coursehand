@@ -1,10 +1,10 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-warstguides
-===========
+coursehand
+==========
 
-**warstguides** provides methods and functions to maintain and export
-the course handbooks of the Department of Statistics at University of
+**coursehand** provides methods and functions to maintain and export the
+course handbooks of the Department of Statistics at University of
 Warwick using Rmarkdown files. The package depends on a particular
 organization of the content, so it will, most probably, not be of any
 immediate use to anyone outside the Department of Statistics at
@@ -17,15 +17,15 @@ You can install the development version from
 [GitHub](https://github.com/) with:
 
     # install.packages("devtools")
-    devtools::install_github("ikosmidis/warstguides")
+    devtools::install_github("ikosmidis/coursehand")
 
 Example
 -------
 
 This is a basic example which shows you some of the methods in
-**warstguides**.
+**coursehand**.
 
-    library("warstguides")
+    library("coursehand")
 
 First, we need to specify where the directory structure with the
 handbook files is. For example, in my machine this is

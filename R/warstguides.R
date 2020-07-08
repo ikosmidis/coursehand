@@ -11,7 +11,7 @@
 #' @author Ioannis Kosmidis \email{ioannis.kosmidis@warwick.ac.uk}
 #'
 #' @docType package
-#' @name warstguides
+#' @name coursehand
 #' @importFrom rmarkdown render html_document word_document pdf_document pandoc_convert  md_document
 #' @importFrom clipr write_clip
 #' @importFrom knitr kable
