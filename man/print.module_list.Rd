@@ -10,7 +10,7 @@
 \item{x}{the output of \code{\link{get_module_list}}}
 
 \item{include}{a subset of \code{"Code"}, \code{"Name"}, \code{"CATS"}, \code{"Term"},
-\code{"Req"}, \code{"Other_Streams"}}
+\code{"Req"}, \code{"Source"}}
 
 \item{...}{currently not used}
 }

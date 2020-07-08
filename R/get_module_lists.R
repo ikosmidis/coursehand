@@ -131,7 +131,7 @@ check_module_list <- function(module_list) {
 #' @export
 summary.module_list <- function(x, type = "module_code_xtabs", ...) {
     type <- match.arg(type, c("module_code_xtabs"))
-    code <- unique(module_list$Code)
+    code <- unique(x$Code)
     department <- substr(code, 0, 2)
     level <- substr(code, 3, 3)
     xtabs(~ level + department)
