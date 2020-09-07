@@ -97,14 +97,31 @@ print.module_list <- function(x,
 
 ## non-exported function to carr out some basic checks on a master module list
 check_module_list <- function(module_list) {
-    c(year_is_numeric = is.numeric(module_list$Year),
-      ## Check for numeric year
-      no_AND_issues_streams = length(grep(" &| &", module_list$Source)) == 0,
-      ## Check that there are no " &", "& " in other streams
-      no_AND_issues_term = length(grep(" &| &", module_list$Term)) == 0,
-      ## Check that there are no " &", "& "
-      max_code_nchar_is_6 = max(nchar(module_list$Code)) == 6)
+
+    by_module <- lapply(unique(module_list$Code), function(x) {
+        module_list[module_list$Code == x, ]
+    })
+    to_check <- c("Code", "Name", "Suspended", "Suspended_Session", "URL", "Notes", "Term")
+    res <- sapply(by_module, function(m) {
+        out <- all(duplicated(m[to_check])[-1])
+        names(out) <- m$Code[1]
+        out
+    })
+    all_instances <- all(res)
+    attr(all_instances, "duplicated_checks") <- res
+    list(year_is_numeric = is.numeric(module_list$Year),
+         ## Check for numeric year
+         no_AND_issues_streams = length(grep(" &| &", module_list$Source)) == 0,
+         ## Check that there are no " &", "& " in other streams
+         no_AND_issues_term = length(grep(" &| &", module_list$Term)) == 0,
+         ## Check that there are no " &", "& "
+         max_code_nchar_is_6 = max(nchar(module_list$Code)) == 6,
+         duplicated_codes_have_the_same_info = all_instances)
+
 }
+
+
+
 
 
 #' Various modes of analyses for module lists

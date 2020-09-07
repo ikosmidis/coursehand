@@ -1,3 +1,8 @@
+# coursehand 0.1.2
+
+## Enhancement
++ Added new tests in `check_module_lists` (not exported)
+
 # coursehand 0.1.1
 
 ## Enhancement
