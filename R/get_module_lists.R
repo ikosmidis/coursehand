@@ -122,19 +122,16 @@ check_module_list <- function(module_list) {
 
 
 
-
-
 #' Various modes of analyses for module lists
 #'
 #' @param x an object of class `module_list` as produced by
 #'     [`get_module_list`].
-#' @param type `"module_code_xtabs"` for cross-tabulation of department
-#'     and level of the modules in `x`.
-#'
-#' @details
-#'
-#' The intention is to add more modes of analyses for `module_list`
-#' objects.
+#' @param type `"module_code_xtabs"` for cross-tabulation of
+#'     department and level of the modules in `x` (default), or
+#'     `"word_cloud"` for a world cloud of the unique module names in
+#'     `x`.
+#' @param ... if `type = "word_cloud"` further arguments to be passed
+#'     to `wordcloud::wordcloud()`
 #'
 #' @return
 #'
@@ -144,12 +141,21 @@ check_module_list <- function(module_list) {
 #' \url{https://warwick.ac.uk/fac/sci/statistics/currentstudents/handbooks/morse/modulecodes/}
 #' for details.
 #'
+#' If `type = "word_cloud", then a world cloud of the unique module
+#' names in `x` is produced.
+#'
 #' @author Ioannis Kosmidis [aut, cre] \email{ioannis.kosmidis@warwick.ac.uk}
 #' @export
 summary.module_list <- function(x, type = "module_code_xtabs", ...) {
-    type <- match.arg(type, c("module_code_xtabs"))
-    code <- unique(x$Code)
-    department <- substr(code, 0, 2)
-    level <- substr(code, 3, 3)
-    xtabs(~ level + department)
+    type <- match.arg(type, c("module_code_xtabs", "word_cloud"))
+    if (type == "module_code_xtabs") {
+        code <- unique(x$Code)
+        department <- substr(code, 0, 2)
+        level <- substr(code, 3, 3)
+        return(xtabs(~ level + department))
+    }
+    if (type == "word_cloud") {
+        ml <- unique(x$Name)
+        wordcloud(ml, ...)
+    }
 }

@@ -10,8 +10,13 @@
 \item{x}{an object of class \code{module_list} as produced by
 \code{\link{get_module_list}}.}
 
-\item{type}{\code{"module_code_xtabs"} for cross-tabulation of department
-and level of the modules in \code{x}.}
+\item{type}{\code{"module_code_xtabs"} for cross-tabulation of
+department and level of the modules in \code{x} (default), or
+\code{"word_cloud"} for a world cloud of the unique module names in
+\code{x}.}
+
+\item{...}{if \code{type = "word_cloud"} further arguments to be passed
+to \code{wordcloud::wordcloud()}}
 }
 \value{
 If \code{type = "module_code_xtabs"}, a cross-tabulation of departments
@@ -19,13 +24,11 @@ and module levels as according to the module coding used at
 University of Warwick. See
 \url{https://warwick.ac.uk/fac/sci/statistics/currentstudents/handbooks/morse/modulecodes/}
 for details.
+
+If \verb{type = "word_cloud", then a world cloud of the unique module names in }x` is produced.
 }
 \description{
 Various modes of analyses for module lists
-}
-\details{
-The intention is to add more modes of analyses for \code{module_list}
-objects.
 }
 \author{
 Ioannis Kosmidis \link{aut, cre} \email{ioannis.kosmidis@warwick.ac.uk}

@@ -1,3 +1,9 @@
+# coursehand 0.1.3
+
+## Enhancement
+
++ Added `type = "word_cloud"` in `summary.module_list()`
+
 # coursehand 0.1.2
 
 ## Enhancement
