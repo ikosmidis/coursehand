@@ -74,8 +74,8 @@ print.module_list <- function(x,
     nams <- x$Name
     dupl <- duplicated(x$ID)
     x <- x %>%
-        mutate(empty_url = URL == "" | Suspended == "Yes",
-               empty_notes = Notes == "",
+        mutate(empty_url = URL == "" | is.na(URL) | Suspended == "Yes",
+               empty_notes = Notes == "" | is.na(Notes),
                Name = ifelse(empty_url, Name, paste0("[", Name, "](", urls, ")")),
                Name = ifelse(empty_notes, Name, paste0(Name, " (", notes, ")")),
                Name = ifelse(Suspended == "No", Name, paste0(Name, " (suspended in ", Suspended_Session, ")")),
