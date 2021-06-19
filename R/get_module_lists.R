@@ -96,27 +96,101 @@ print.module_list <- function(x,
 }
 
 ## non-exported function to carr out some basic checks on a master module list
-check_module_list <- function(module_list) {
+check_module_list <- function(module_list, current_session = "21/22") {
 
     by_module <- lapply(unique(module_list$Code), function(x) {
         module_list[module_list$Code == x, ]
     })
     to_check <- c("Code", "Name", "Suspended", "Suspended_Session", "URL", "Notes", "Term")
+
+    ## duplicated records have the same info in to_check
     res <- sapply(by_module, function(m) {
         out <- all(duplicated(m[to_check])[-1])
         names(out) <- m$Code[1]
         out
     })
     all_instances <- all(res)
-    attr(all_instances, "duplicated_checks") <- res
-    list(year_is_numeric = is.numeric(module_list$Year),
+    attr(all_instances, "modules") <- res
+
+    ## Suspended session is the same and equal to current_session in duplicated codes
+    susp_res <- sapply(by_module, function(m) {
+        out <- m[, "Suspended_Session"] == "" | is.na(m[, "Suspended_Session"])
+        out[!out] <- m[!out, "Suspended_Session"] == current_session
+        out <- all(out)
+        names(out) <- m$Code[1]
+        out
+    })
+    all_susp_res <- all(susp_res)
+    attr(all_susp_res, "modules") <- susp_res
+
+    ## Suspended and Suspended_Session pairs make sense
+    susp <- sapply(by_module, function(m) {
+        suspended <- m[, "Suspended"] == "Yes"
+        check1 <- m[suspended, "Suspended_Session"] == current_session
+        check2 <- m[!suspended, "Suspended_Session"] == "" | is.na(m[!suspended, "Suspended_Session"])
+        out <- all(check1 & check2)
+        names(out) <- m$Code[1]
+        out
+    })
+    all_susp <- all(susp)
+    attr(all_susp, "modules") <- susp
+
+    ## Module codes have maximum 6 characters
+    code_length <- nchar(names(res)) <= 6
+    names(code_length) <- names(res)
+    all_code_length <- all(code_length)
+    attr(all_code_length, "modules") <- code_length
+
+    checks <- list(year_is_numeric = is.numeric(module_list$Year),
          ## Check for numeric year
-         no_AND_issues_streams = length(grep(" &| &", module_list$Source)) == 0,
+         no_AND_issues_streams = length(grep(" &|& ", module_list$Source)) == 0,
          ## Check that there are no " &", "& " in other streams
-         no_AND_issues_term = length(grep(" &| &", module_list$Term)) == 0,
+         no_AND_issues_term = length(grep(" &|& ", module_list$Term)) == 0,
          ## Check that there are no " &", "& "
-         max_code_nchar_is_6 = max(nchar(module_list$Code)) == 6,
-         duplicated_codes_have_the_same_info = all_instances)
+         max_code_nchar_is_6 = all_code_length,
+         duplicated_codes_have_the_same_info = all_instances,
+         suspended_session_is_the_same_in_duplicated_codes = all_susp_res,
+         modules_have_correct_suspended_info = all_susp)
+    class(checks) <- c("module_list_checks", class(checks))
+    checks
+
+}
+
+#' @export
+print.module_list_checks <- function(object, ...) {
+    cat("Course year is numeric for all modules: ")
+    cat(object$year_is_numeric, "\n")
+    cat("No issues with & separator in MORSE Streams: ")
+    cat(object$no_AND_issues_streams, "\n")
+    cat("No issues with & separator in Term: ")
+    cat(object$no_AND_issues_term, "\n")
+    cat("Module codes have maximum 6 characters: ")
+    cat(object$max_code_nchar_is_6, "\n")
+    if (!object$max_code_nchar_is_6) {
+        cat(" Failed: ")
+        cat(names(which(!attr(object$max_code_nchar_is_6, "modules"))), "\n")
+    }
+    cat("Duplicated modules records have the same basic info: ")
+    cat(object$duplicated_codes_have_the_same_info, "\n")
+    if (!object$duplicated_codes_have_the_same_info) {
+        cat(" Failed: ")
+        cat(names(which(!attr(object$duplicated_codes_have_the_same_info, "modules"))), "\n")
+    }
+    cat("Suspended session is the same in all duplicated modules: ")
+    cat(object$suspended_session_is_the_same_in_duplicated_codes, "\n")
+    if (!object$suspended_session_is_the_same_in_duplicated_codes) {
+        cat(" Failed: ")
+        cat(names(which(!attr(object$suspended_session_is_the_same_in_duplicated_codes, "modules"))), "\n")
+    }
+    cat("Suspended and Suspended_Session pairs make sense: ")
+    cat(object$modules_have_correct_suspended_info, "\n")
+    if (!object$modules_have_correct_suspended_info) {
+        cat(" Failed: ")
+        cat(names(which(!attr(object$modules_have_correct_suspended_info, "modules"))), "\n")
+    }
+
+
+
 
 }
 

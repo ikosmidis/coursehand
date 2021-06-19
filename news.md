@@ -1,3 +1,10 @@
+# coursehand 0.1.4
+
+## Enhancement
+
++ Added more checks in the non-exported `coursehand:::check_module_list()`, and a print method for its output
+
+
 # coursehand 0.1.3
 
 ## Enhancement
