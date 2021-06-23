@@ -65,6 +65,7 @@ get_module_list <- function(module_list,
 #' @export
 print.module_list <- function(x,
                               include = c("Code", "Name", "CATS", "Term"),
+                              keep_URL = TRUE,
                               ...) {
     exists <- all(include %in% c("Code", "Name", "CATS", "Term", "Req", "Source"))
     stopifnot("`include` can include at least one of 'Code', 'Name', 'CATS', 'Term', 'Req', 'Source'" = isTRUE(exists))
@@ -74,7 +75,7 @@ print.module_list <- function(x,
     nams <- x$Name
     dupl <- duplicated(x$ID)
     x <- x %>%
-        mutate(empty_url = URL == "" | is.na(URL) | Suspended == "Yes",
+        mutate(empty_url = ifelse(!keep_URL, TRUE, URL == "" | is.na(URL) | Suspended == "Yes"),
                empty_notes = Notes == "" | is.na(Notes),
                Name = ifelse(empty_url, Name, paste0("[", Name, "](", urls, ")")),
                Name = ifelse(empty_notes, Name, paste0(Name, " (", notes, ")")),

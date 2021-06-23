@@ -1,3 +1,9 @@
+# coursehand 0.1.5
+
+## Enhancement
+
++ Added `keep_URL` argument to the `print()` method for `"module_list"` objects
+
 # coursehand 0.1.4
 
 ## Enhancement
