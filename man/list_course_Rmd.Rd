@@ -9,7 +9,7 @@ list_course_Rmd(working_dir, course, full_path = TRUE)
 \arguments{
 \item{working_dir}{the path to the working directory.}
 
-\item{course}{one of "datascience", "morse", "mathstat" or "common".}
+\item{course}{one of "datascience", "morse", "mathstat", "msc" or "common".}
 
 \item{full_path}{should the full paths to the md files be returned? Default is \code{TRUE}.}
 }

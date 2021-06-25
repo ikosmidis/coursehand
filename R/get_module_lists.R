@@ -2,7 +2,7 @@
 #'
 #' @param module_list either the path to `module_lists.csv` or a
 #'     `data.frame`.
-#' @param course one of "datascience", "morse", "mathstat".
+#' @param course one of "datascience", "morse", "mathstat", "msc".
 #' @param stream either `NA` (default) or one of `"G30A"`, `"G30B"`,
 #'     `"G30C"`, `"G30D"`.
 #' @param year either 1 (default), 2, 3, or 4.
@@ -30,7 +30,7 @@ get_module_list <- function(module_list,
                             mlevel = "Yes",
                             everything = FALSE) {
     stopifnot("`year` must be one of `1`, `2`, `3`, `4" = year %in% c(1, 2, 3, 4))
-    course <- match.arg(course, c("datascience", "morse", "mathstat"))
+    course <- match.arg(course, c("datascience", "morse", "mathstat", "msc"))
     if (!is.na(stream)) {
         stream <- match.arg(stream, c("G30A", "G30B", "G30C", "G30D"))
     }

@@ -4,7 +4,7 @@
 \alias{print.module_list}
 \title{Print a module list as a markdown pipe table}
 \usage{
-\method{print}{module_list}(x, include = c("Code", "Name", "CATS", "Term"), ...)
+\method{print}{module_list}(x, include = c("Code", "Name", "CATS", "Term"), keep_URL = TRUE, ...)
 }
 \arguments{
 \item{x}{the output of \code{\link{get_module_list}}}

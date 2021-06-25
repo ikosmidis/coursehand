@@ -1,3 +1,9 @@
+# coursehand 0.1.7
+
+## Enhancement
+
++ Added support for the MSc handbook
+
 # coursehand 0.1.6
 
 ## Bug fix

@@ -9,7 +9,7 @@ Rmd_to_html(Rmd_file, course, working_dir, clipboard = TRUE, quiet = TRUE)
 \arguments{
 \item{Rmd_file}{the name of the Rmd file to be converted to html.}
 
-\item{course}{one of "datascience", "morse", "mathstat" or "common".}
+\item{course}{one of "datascience", "morse", "mathstat", "msc" or "common".}
 
 \item{working_dir}{the path to the working directory.}
 

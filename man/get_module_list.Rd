@@ -19,7 +19,7 @@ get_module_list(
 \item{module_list}{either the path to \code{module_lists.csv} or a
 \code{data.frame}.}
 
-\item{course}{one of "datascience", "morse", "mathstat".}
+\item{course}{one of "datascience", "morse", "mathstat", "msc".}
 
 \item{stream}{either \code{NA} (default) or one of \code{"G30A"}, \code{"G30B"},
 \code{"G30C"}, \code{"G30D"}.}

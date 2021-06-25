@@ -5,7 +5,7 @@
 #'     common/html-*, as created by the script
 #'     download_convert_organize_handbook_files.R.
 #' @param courses at least one of `"datascience"`, `"morse"`,
-#'     `"mathstat"`, indicating which handbook drafts to
+#'     `"mathstat"`, `"msc"` indicating which handbook drafts to
 #'     compile. Default is `c("datascience", "morse", "mathstat")`.
 #' @param include_source_names should the draft include notes of what
 #'     md file each part of the draft corresponds to? Default is
@@ -19,12 +19,12 @@
 #'
 #' @export
 compile_draft <- function(working_dir,
-                          courses = c("datascience", "morse", "mathstat"),
+                          courses = c("datascience", "morse", "mathstat", "msc"),
                           include_source_names = TRUE,
                           keep_source = FALSE,
                           output_format = "html",
                           quiet = TRUE) {
-    if (!all(courses %in% c("datascience", "morse", "mathstat")))
+    if (!all(courses %in% c("datascience", "morse", "mathstat", "msc")))
         stop("`courses` should be at least one of 'datascience', 'morse', and 'mathstat'")
     ## Try to get the module list
     ml_path <- file.path(working_dir, "module_lists.csv")

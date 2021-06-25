@@ -6,7 +6,7 @@
 \usage{
 compile_draft(
   working_dir,
-  courses = c("datascience", "morse", "mathstat"),
+  courses = c("datascience", "morse", "mathstat", "msc"),
   include_source_names = TRUE,
   keep_source = FALSE,
   output_format = "html",
@@ -20,7 +20,7 @@ common/html-*, as created by the script
 download_convert_organize_handbook_files.R.}
 
 \item{courses}{at least one of \code{"datascience"}, \code{"morse"},
-\code{"mathstat"}, indicating which handbook drafts to
+\code{"mathstat"}, \code{"msc"} indicating which handbook drafts to
 compile. Default is \code{c("datascience", "morse", "mathstat")}.}
 
 \item{include_source_names}{should the draft include notes of what
