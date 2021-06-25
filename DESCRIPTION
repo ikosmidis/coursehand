@@ -1,6 +1,6 @@
 Package: coursehand
 Title: Methods to maintain the Course Handbooks of the Department of Statistics at University of Warwick
-Version: 0.1.5
+Version: 0.1.6
 Authors@R: 
     person(given = "Ioannis",
            family = "Kosmidis",

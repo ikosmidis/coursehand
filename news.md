@@ -1,3 +1,9 @@
+# coursehand 0.1.6
+
+## Bug fix
+
++ Fixed a bug in `print()` method for `module_list` objects, where a hard-to-decipher error would be produced if the object had not modules
+
 # coursehand 0.1.5
 
 ## Enhancement

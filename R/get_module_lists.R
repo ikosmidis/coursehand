@@ -81,12 +81,14 @@ print.module_list <- function(x,
                Name = ifelse(empty_notes, Name, paste0(Name, " (", notes, ")")),
                Name = ifelse(Suspended == "No", Name, paste0(Name, " (suspended in ", Suspended_Session, ")")),
                duplicated_ID = duplicated(ID))
-    counter <- 0
-    for (i in seq.int(nrow(x))) {
-        counter <- counter + 1
-        if (dupl[i]) {
-            x <- x %>% add_row(Name = "OR", .before = counter)
+    if (isTRUE(nrow(x) > 0)) {
+        counter <- 0
+        for (i in seq.int(nrow(x))) {
             counter <- counter + 1
+            if (dupl[i]) {
+                x <- x %>% add_row(Name = "OR", .before = counter)
+                counter <- counter + 1
+            }
         }
     }
     x <- x[, include, drop = FALSE]
