@@ -2,6 +2,12 @@
 
 ## Enhancement
 
++ Added support for BSc and MSc specific common files (using "-BSc" and "-MSc" suffix to the Rmd name in common)
+
+# coursehand 0.1.7
+
+## Enhancement
+
 + Added support for the MSc handbook
 
 # coursehand 0.1.6

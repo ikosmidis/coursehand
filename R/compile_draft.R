@@ -50,13 +50,30 @@ compile_draft <- function(working_dir,
         paste0("../", x, "/Rmd/", dir(courses_md_dir[x], pattern = ".md"))
     }), courses)
     common_md_dir <- paste(working_dir, "common/Rmd/", sep = "/")
-    common_md_files <- paste0("../common/Rmd/", dir(common_md_dir))
+    common_md_files_all <- paste0("../common/Rmd/", dir(common_md_dir))
     drafts <- file.path(working_dir, "drafts")
     if (!dir.exists(drafts)) {
         dir.create(drafts)
     }
+
+    ## IK, For MSc specific in common
+    ## chars <- substr(msc_specific, 1, 4)
+    ## grep(paste(chars, collapse = "|"), common_md_files)
+    ## msc_common_inds <- grep(paste(msc_specific, collapse = "|"), common_md_files)
+
+    msc_specific <- grepl("-MSc", common_md_files_all)
+    bsc_specific <- grepl("-BSc", common_md_files_all)
+
+
     for (course in courses) {
-        ## YAML
+        ## IK, For MSc specific in common
+        if (course == "msc") {
+            common_md_files <- common_md_files_all[!bsc_specific]
+        }
+        else {
+            common_md_files <- common_md_files_all[!msc_specific]
+        }
+        ## yaml
         master_md <- file.path(drafts, paste0("draft_", course, ".Rmd"))
         cat("---\n", paste("title:", course, "handbook"), "\n---\n", sep = "", file = master_md, append = FALSE)
         for (f in courses_md_files[[course]]) {
