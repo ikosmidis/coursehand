@@ -58,11 +58,11 @@ compile_book <- function(working_dir,
         }
         file.copy(css_files, book)
         file.copy(config, book)
-        bookdown::render_book(book,
-                              output_format = "bookdown::gitbook",
-                              ## config_file = config,
-                              output_dir = draft,
-                              quiet = quiet)
+        try(bookdown::render_book(book,
+                                  output_format = "bookdown::gitbook",
+                                  ## config_file = config,
+                                  output_dir = draft,
+                                  quiet = quiet))
         file.remove(dir(book, "*.css", full.names = TRUE))
         file.remove(dir(book, "_bookdown.yml", full.names = TRUE))
         file.remove(common_paths)
@@ -79,11 +79,11 @@ compile_book <- function(working_dir,
         }
         file.copy(css_files, book)
         file.copy(config, book)        
-        bookdown::render_book(book,
-                              output_format = "bookdown::pdf_book",
-                              ## config_file = config,
-                              output_dir = draft,
-                              quiet = quiet)
+        try(bookdown::render_book(book,
+                                  output_format = "bookdown::pdf_book",
+                                  ## config_file = config,
+                                  output_dir = draft,
+                                  quiet = quiet))
         file.remove(dir(book, "*.css", full.names = TRUE))
         file.remove(dir(book, "_bookdown.yml", full.names = TRUE))
         file.remove(common_paths)
