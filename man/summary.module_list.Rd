@@ -4,10 +4,10 @@
 \alias{summary.module_list}
 \title{Various modes of analyses for module lists}
 \usage{
-\method{summary}{module_list}(x, type = "module_code_xtabs", ...)
+\method{summary}{module_list}(object, type = "module_code_xtabs", ...)
 }
 \arguments{
-\item{x}{an object of class \code{module_list} as produced by
+\item{object}{an object of class \code{module_list} as produced by
 \code{\link{get_module_list}}.}
 
 \item{type}{\code{"module_code_xtabs"} for cross-tabulation of
@@ -31,5 +31,5 @@ If \verb{type = "word_cloud", then a world cloud of the unique module names in }
 Various modes of analyses for module lists
 }
 \author{
-Ioannis Kosmidis \link{aut, cre} \email{ioannis.kosmidis@warwick.ac.uk}
+Ioannis Kosmidis (aut, cre) \email{ioannis.kosmidis@warwick.ac.uk}
 }

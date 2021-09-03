@@ -17,5 +17,5 @@ list_course_Rmd(working_dir, course, full_path = TRUE)
 List Rmd files available for a course
 }
 \author{
-Ioannis Kosmidis \link{aut, cre} \email{ioannis.kosmidis@warwick.ac.uk}
+Ioannis Kosmidis (aut, cre) \email{ioannis.kosmidis@warwick.ac.uk}
 }

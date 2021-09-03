@@ -18,7 +18,7 @@
 #'     the contents of `module_list.csv` or simply `module_list` is
 #'     returned. Default is `FALSE`.
 #'
-#' @author Ioannis Kosmidis [aut, cre] \email{ioannis.kosmidis@warwick.ac.uk}
+#' @author Ioannis Kosmidis (aut, cre) \email{ioannis.kosmidis@warwick.ac.uk}
 #'
 #' @export
 get_module_list <- function(module_list,
@@ -58,9 +58,10 @@ get_module_list <- function(module_list,
 #' @param x the output of [`get_module_list`]
 #' @param include a subset of `"Code"`, `"Name"`, `"CATS"`, `"Term"`,
 #'     `"Req"`, `"Source"`
+#' @param keep_URL should we return the URLs of the modules? Default is `TRUE`
 #' @param ... currently not used
 #'
-#' @author Ioannis Kosmidis [aut, cre] \email{ioannis.kosmidis@warwick.ac.uk}
+#' @author Ioannis Kosmidis (aut, cre) \email{ioannis.kosmidis@warwick.ac.uk}
 #'
 #' @export
 print.module_list <- function(x,
@@ -160,36 +161,36 @@ check_module_list <- function(module_list, current_session = "21/22") {
 }
 
 #' @export
-print.module_list_checks <- function(object, ...) {
+print.module_list_checks <- function(x, ...) {
     cat("Course year is numeric for all modules: ")
-    cat(object$year_is_numeric, "\n")
+    cat(x$year_is_numeric, "\n")
     cat("No issues with & separator in MORSE Streams: ")
-    cat(object$no_AND_issues_streams, "\n")
+    cat(x$no_AND_issues_streams, "\n")
     cat("No issues with & separator in Term: ")
-    cat(object$no_AND_issues_term, "\n")
+    cat(x$no_AND_issues_term, "\n")
     cat("Module codes have maximum 6 characters: ")
-    cat(object$max_code_nchar_is_6, "\n")
-    if (!object$max_code_nchar_is_6) {
+    cat(x$max_code_nchar_is_6, "\n")
+    if (!x$max_code_nchar_is_6) {
         cat(" Failed: ")
-        cat(names(which(!attr(object$max_code_nchar_is_6, "modules"))), "\n")
+        cat(names(which(!attr(x$max_code_nchar_is_6, "modules"))), "\n")
     }
     cat("Duplicated modules records have the same basic info: ")
-    cat(object$duplicated_codes_have_the_same_info, "\n")
-    if (!object$duplicated_codes_have_the_same_info) {
+    cat(x$duplicated_codes_have_the_same_info, "\n")
+    if (!x$duplicated_codes_have_the_same_info) {
         cat(" Failed: ")
-        cat(names(which(!attr(object$duplicated_codes_have_the_same_info, "modules"))), "\n")
+        cat(names(which(!attr(x$duplicated_codes_have_the_same_info, "modules"))), "\n")
     }
     cat("Suspended session is the same in all duplicated modules: ")
-    cat(object$suspended_session_is_the_same_in_duplicated_codes, "\n")
-    if (!object$suspended_session_is_the_same_in_duplicated_codes) {
+    cat(x$suspended_session_is_the_same_in_duplicated_codes, "\n")
+    if (!x$suspended_session_is_the_same_in_duplicated_codes) {
         cat(" Failed: ")
-        cat(names(which(!attr(object$suspended_session_is_the_same_in_duplicated_codes, "modules"))), "\n")
+        cat(names(which(!attr(x$suspended_session_is_the_same_in_duplicated_codes, "modules"))), "\n")
     }
     cat("Suspended and Suspended_Session pairs make sense: ")
-    cat(object$modules_have_correct_suspended_info, "\n")
-    if (!object$modules_have_correct_suspended_info) {
+    cat(x$modules_have_correct_suspended_info, "\n")
+    if (!x$modules_have_correct_suspended_info) {
         cat(" Failed: ")
-        cat(names(which(!attr(object$modules_have_correct_suspended_info, "modules"))), "\n")
+        cat(names(which(!attr(x$modules_have_correct_suspended_info, "modules"))), "\n")
     }
 
 
@@ -201,7 +202,7 @@ print.module_list_checks <- function(object, ...) {
 
 #' Various modes of analyses for module lists
 #'
-#' @param x an object of class `module_list` as produced by
+#' @param object an object of class `module_list` as produced by
 #'     [`get_module_list`].
 #' @param type `"module_code_xtabs"` for cross-tabulation of
 #'     department and level of the modules in `x` (default), or
@@ -221,18 +222,18 @@ print.module_list_checks <- function(object, ...) {
 #' If `type = "word_cloud", then a world cloud of the unique module
 #' names in `x` is produced.
 #'
-#' @author Ioannis Kosmidis [aut, cre] \email{ioannis.kosmidis@warwick.ac.uk}
+#' @author Ioannis Kosmidis (aut, cre) \email{ioannis.kosmidis@warwick.ac.uk}
 #' @export
-summary.module_list <- function(x, type = "module_code_xtabs", ...) {
+summary.module_list <- function(object, type = "module_code_xtabs", ...) {
     type <- match.arg(type, c("module_code_xtabs", "word_cloud"))
     if (type == "module_code_xtabs") {
-        code <- unique(x$Code)
+        code <- unique(object$Code)
         department <- substr(code, 0, 2)
         level <- substr(code, 3, 3)
         return(xtabs(~ level + department))
     }
     if (type == "word_cloud") {
-        ml <- unique(x$Name)
+        ml <- unique(object$Name)
         wordcloud(ml, ...)
     }
 }

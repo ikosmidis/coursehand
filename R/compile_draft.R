@@ -15,7 +15,11 @@
 #' @param output_format either `"html"` (default), `"word"`, or `"pdf"`.
 #' @param quiet suppress printing of progress? Default is `TRUE`.
 #'
-#' @author Ioannis Kosmidis [aut, cre] \email{ioannis.kosmidis@warwick.ac.uk}
+#' @details
+#'
+#' Only useful for the pre-bookdown directory structure
+#'
+#' @author Ioannis Kosmidis (aut, cre) \email{ioannis.kosmidis@warwick.ac.uk}
 #'
 #' @export
 compile_draft <- function(working_dir,
@@ -102,13 +106,4 @@ compile_draft <- function(working_dir,
                           quiet = quiet)
         if (!isTRUE(keep_source)) file.remove(master_md)
     }
-}
-
-## color according to output
-note <- function(x, type = "END", color, output_format) {
-    type <- match.arg(type, c("END", "BEGIN"))
-    switch(output_format,
-           pdf = sprintf("\\textcolor{%s}{\\bf \\#\\#\\# %s: %s}\n\n", color, type, x),
-           word = sprintf("**\\#\\#\\# %s: %s**\n\n", type, x),
-           html = sprintf('<span style="color:%s"><strong>### %s: %s</strong></span>\n\n', color, type, x))
 }

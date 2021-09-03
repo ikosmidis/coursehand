@@ -16,5 +16,5 @@ University of Warwick.
 \author{
 Ioannis Kosmidis \email{ioannis.kosmidis@warwick.ac.uk}
 
-Ioannis Kosmidis \link{aut, cre} \email{ioannis.kosmidis@warwick.ac.uk}
+Ioannis Kosmidis (aut, cre) \email{ioannis.kosmidis@warwick.ac.uk}
 }

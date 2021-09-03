@@ -1,3 +1,9 @@
+# coursehand 0.1.9
+
+## Enhancement
+
++ Added `compile_gitbook()` method for compiling handbooks using **bookdown**.
+
 # coursehand 0.1.8
 
 ## Enhancement

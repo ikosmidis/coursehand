@@ -45,5 +45,5 @@ returned. Default is \code{FALSE}.}
 Filter out particular module lists from a master list
 }
 \author{
-Ioannis Kosmidis \link{aut, cre} \email{ioannis.kosmidis@warwick.ac.uk}
+Ioannis Kosmidis (aut, cre) \email{ioannis.kosmidis@warwick.ac.uk}
 }

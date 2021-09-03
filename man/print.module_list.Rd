@@ -12,11 +12,13 @@
 \item{include}{a subset of \code{"Code"}, \code{"Name"}, \code{"CATS"}, \code{"Term"},
 \code{"Req"}, \code{"Source"}}
 
+\item{keep_URL}{should we return the URLs of the modules? Default is \code{TRUE}}
+
 \item{...}{currently not used}
 }
 \description{
 Print a module list as a markdown pipe table
 }
 \author{
-Ioannis Kosmidis \link{aut, cre} \email{ioannis.kosmidis@warwick.ac.uk}
+Ioannis Kosmidis (aut, cre) \email{ioannis.kosmidis@warwick.ac.uk}
 }

@@ -6,7 +6,7 @@
 #' @param clipboard should the contents of the html file be copied to the clipboard? Default is `TRUE`.
 #' @param quiet suppress printing of progress? Default is `TRUE`.
 #'
-#' @author Ioannis Kosmidis [aut, cre] \email{ioannis.kosmidis@warwick.ac.uk}
+#' @author Ioannis Kosmidis (aut, cre) \email{ioannis.kosmidis@warwick.ac.uk}
 #'
 #' @export
 Rmd_to_md <- function(Rmd_file,

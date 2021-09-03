@@ -13,6 +13,8 @@
 #' @docType package
 #' @name coursehand
 #' @importFrom rmarkdown render html_document word_document pdf_document pandoc_convert  md_document
+#' @import bookdown
+#' @import wordcloud
 #' @importFrom clipr write_clip
 #' @importFrom knitr kable
 #' @importFrom readr read_file
@@ -20,7 +22,7 @@
 #' @importFrom stats setNames xtabs
 #' @import dplyr
 #'
-#' @author Ioannis Kosmidis [aut, cre] \email{ioannis.kosmidis@warwick.ac.uk}
+#' @author Ioannis Kosmidis (aut, cre) \email{ioannis.kosmidis@warwick.ac.uk}
 #'
 NULL
 
