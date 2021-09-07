@@ -13,6 +13,7 @@
 #'     `FALSE`.
 #' @param draft_version should the html version of the handboook have
 #'     a "DRAFT" watermark?  Default is `TRUE`
+#' @param compress should the resulting gitbook be compressed. Default is `TRUE`.
 #' @param quiet suppress printing of progress? Default is `TRUE`.
 #' 
 #' @author Ioannis Kosmidis (aut, cre) \email{ioannis.kosmidis@warwick.ac.uk}
@@ -22,9 +23,11 @@ compile_book <- function(working_dir,
                          courses = c("datascience", "morse", "mathstat", "msc"),
                          include_source_names = FALSE,
                          quiet = TRUE,
+                         compress = TRUE,
                          draft_version = TRUE) {
     if (!all(courses %in% c("datascience", "morse", "mathstat", "msc")))
         stop("`courses` should be at least one of 'datascience', 'morse', 'mathstat', and 'msc'")
+    working_dir <- path.expand(working_dir)
     ml_path <- file.path(working_dir, "module_lists.csv")
     module_lists <- try(read.csv(ml_path))
     if (inherits(module_lists, "try-error")) {
@@ -91,6 +94,12 @@ compile_book <- function(working_dir,
         ## bookdown::render_book(book,
         ##                       output_format = "bookdown::html_document2",
         ##                       config_file = config)
+
+        ## Compress
+        
+        if (isTRUE(compress)) {
+            zip::zip(paste0(draft, ".zip"), files = draft, mode = "cherry-pick")
+        }
         
     }
 }

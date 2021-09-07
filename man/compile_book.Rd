@@ -9,6 +9,7 @@ compile_book(
   courses = c("datascience", "morse", "mathstat", "msc"),
   include_source_names = FALSE,
   quiet = TRUE,
+  compress = TRUE,
   draft_version = TRUE
 )
 }
@@ -27,6 +28,8 @@ md file each part of the draft corresponds to? Default is
 \code{FALSE}.}
 
 \item{quiet}{suppress printing of progress? Default is \code{TRUE}.}
+
+\item{compress}{should the resulting gitbook be compressed. Default is \code{TRUE}.}
 
 \item{draft_version}{should the html version of the handboook have
 a "DRAFT" watermark?  Default is \code{TRUE}}

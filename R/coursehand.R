@@ -21,6 +21,7 @@
 #' @importFrom utils read.csv
 #' @importFrom stats setNames xtabs
 #' @import dplyr
+#' @import zip
 #'
 #' @author Ioannis Kosmidis (aut, cre) \email{ioannis.kosmidis@warwick.ac.uk}
 #'
