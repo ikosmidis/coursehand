@@ -94,9 +94,6 @@ compile_book <- function(working_dir,
             else {
                 exclude <- grepl("-MSc|-EXTERNAL", common_files)
             }
-            ##:ess-bp-start::conditional@:##
-browser(expr={TRUE})##:ess-bp-end:##
-
             common_files <- common_files[!exclude]
             exclude <- grepl("0000-", common_files)
             common_files <- common_files[!exclude]
