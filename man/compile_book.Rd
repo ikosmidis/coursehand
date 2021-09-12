@@ -6,11 +6,12 @@
 \usage{
 compile_book(
   working_dir,
-  courses = c("datascience", "morse", "mathstat", "msc"),
+  courses = c("datascience", "morse", "mathstat", "msc", "external"),
   include_source_names = FALSE,
   quiet = TRUE,
   compress = TRUE,
-  draft_version = TRUE
+  draft_version = TRUE,
+  external_common
 )
 }
 \arguments{
@@ -20,8 +21,8 @@ common/html-*, as created by the script
 download_convert_organize_handbook_files.R.}
 
 \item{courses}{at least one of \code{"datascience"}, \code{"morse"},
-\code{"mathstat"}, \code{"msc"} indicating which handbook drafts to
-compile. Default is \code{c("datascience", "morse", "mathstat", "msc")}.}
+\code{"mathstat"}, \code{"msc"}, \code{"external"} indicating which handbook
+books to compile. Default is \code{c("datascience", "morse", "mathstat", "msc", "external")}.}
 
 \item{include_source_names}{should the draft include notes of what
 md file each part of the draft corresponds to? Default is
@@ -29,13 +30,48 @@ md file each part of the draft corresponds to? Default is
 
 \item{quiet}{suppress printing of progress? Default is \code{TRUE}.}
 
-\item{compress}{should the resulting gitbook be compressed. Default is \code{TRUE}.}
+\item{compress}{should the resulting gitbook be compressed. Default
+is \code{TRUE}.}
 
-\item{draft_version}{should the html version of the handboook have
+\item{draft_version}{should the html version of the handbook have
 a "DRAFT" watermark?  Default is \code{TRUE}}
+
+\item{external_common}{a vector of character strings; if \code{courses = "external"} or "\code{external}" is in \code{courses}, then the "common"
+sections that will be included in the handbook for external
+students are those specified by \code{external_common}.}
 }
 \description{
 Compile a handbook in html and pdf format
+}
+\details{
+\code{compile_book} will include the Rmd files in the \code{common/Rmd/}
+directory as follows:
+
+If \code{courses = "external"} or "\code{external}" is in \code{courses}, then the
+"common" sections that will be included in the handbook for
+external students are those specified by \code{external_common}
+
+For the remainder courses:
+\itemize{
+\item Any files with filenames that do not contain the strings "-BSc",
+"-MSc", or "-EXTERNAL" will appear in all handbooks specified in
+the \code{courses} argument.
+\item Any files that have suffix "-BSc" will appear only in the
+\code{"datascience"}, \code{"morse"}, \code{"mathstat"} handbooks; see \code{courses}
+argument.
+\item Any files that have suffix "-MSc" will appear only in the
+\code{"msc"} handbook; see \code{courses} argument.
+}
+
+The Rmd files in the "common/Rmd" directory are included in
+handbook in increasing order of the number their filename begins
+with. \code{"external"} is an exception to this rule, where the files
+are included in the handbook in the order specified in
+\code{external_common}.
+
+The files with filenames starting with "0000-" are ignored, as they
+are intended to be hard-coded in the Rmd files of earlier sections
+of the handbook.
 }
 \author{
 Ioannis Kosmidis (aut, cre) \email{ioannis.kosmidis@warwick.ac.uk}

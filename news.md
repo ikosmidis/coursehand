@@ -1,8 +1,14 @@
+# coursehand 0.2
+
+## Enhancement
+
++ `compile_book()` now supports the "external" handbook.
+
 # coursehand 0.1.9
 
 ## Enhancement
 
-+ Added `compile_gitbook()` method for compiling handbooks using **bookdown**.
++ Added `compile_book()` method for compiling handbooks using **bookdown**.
 
 # coursehand 0.1.8
 
