@@ -72,7 +72,7 @@ compile_book <- function(working_dir,
         stop(ml_path, " does not exist")
     }
     books_rmd <- file.path(working_dir, file.path(courses, "Rmd/"))
-    config <- file.path(working_dir, "book-config/_bookdown.yml")
+    ## config <- file.path(working_dir, "book-config/_bookdown.yml")
     drafts <- file.path(working_dir, paste0("drafts/", paste0(courses, "-handbook")))
     css_files <- dir(file.path(working_dir, "book-config/"), "*.css", full.names = TRUE)
     common_files <- dir(file.path(working_dir, "common/Rmd"), full.names = TRUE)
@@ -112,14 +112,14 @@ compile_book <- function(working_dir,
             }
         }
         file.copy(css_files, book)
-        file.copy(config, book)
+        ## file.copy(config, book)
         try(bookdown::render_book(book,
                                   output_format = "bookdown::gitbook",
                                   ## config_file = config,
                                   output_dir = draft,
                                   quiet = quiet))
         file.remove(dir(book, "*.css", full.names = TRUE))
-        file.remove(dir(book, "_bookdown.yml", full.names = TRUE))
+        ## file.remove(dir(book, "_bookdown.yml", full.names = TRUE))
         file.remove(common_paths)
 
         ## PDF
@@ -133,14 +133,14 @@ compile_book <- function(working_dir,
             }
         }
         file.copy(css_files, book)
-        file.copy(config, book)
+        ## file.copy(config, book)
         try(bookdown::render_book(book,
                                   output_format = "bookdown::pdf_book",
                                   ## config_file = config,
                                   output_dir = draft,
                                   quiet = quiet))
         file.remove(dir(book, "*.css", full.names = TRUE))
-        file.remove(dir(book, "_bookdown.yml", full.names = TRUE))
+        ## file.remove(dir(book, "_bookdown.yml", full.names = TRUE))
         file.remove(common_paths)
 
         ## bookdown::render_book(book,
