@@ -73,8 +73,10 @@ compile_book <- function(working_dir,
     }
     books_rmd <- file.path(working_dir, file.path(courses, "Rmd/"))
     ## config <- file.path(working_dir, "book-config/_bookdown.yml")
+    book_config <- file.path(working_dir, "book-config/")
     drafts <- file.path(working_dir, paste0("drafts/", paste0(courses, "-handbook")))
-    css_files <- dir(file.path(working_dir, "book-config/"), "*.css", full.names = TRUE)
+    css_files <- dir(book_config, "*.css", full.names = TRUE)
+    assets <- file.path(book_config, "assets")
     common_files <- dir(file.path(working_dir, "common/Rmd"), full.names = TRUE)
 
     for (j in seq_along(courses)) {
@@ -149,8 +151,12 @@ compile_book <- function(working_dir,
 
         ## Compress
 
+        if (dir.exists(assets)) {
+            file.copy(assets, draft, recursive = TRUE)
+        }
+
         if (isTRUE(compress)) {
-            zip::zip(paste0(draft, ".zip"), files = draft, mode = "cherry-pick")
+            zip::zip(paste0(draft, "-", format(Sys.time(), format = "%d-%b-%Y"), ".zip"), files = draft, mode = "cherry-pick")
         }
 
     }
