@@ -31,7 +31,7 @@
 #' external students are those specified by `external_common`
 #'
 #' If `courses = "intercalated"` then only the Rmd files under
-#' \code{intercalated/Rmd"} are included.
+#' \code{intercalated/Rmd} are included.
 #'
 #' For the remainder courses:
 #'

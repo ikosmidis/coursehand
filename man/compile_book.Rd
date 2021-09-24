@@ -6,7 +6,7 @@
 \usage{
 compile_book(
   working_dir,
-  courses = c("datascience", "morse", "mathstat", "msc", "external"),
+  courses = c("datascience", "morse", "mathstat", "msc", "external", "intercalated"),
   include_source_names = FALSE,
   quiet = TRUE,
   compress = TRUE,
@@ -21,8 +21,8 @@ common/html-*, as created by the script
 download_convert_organize_handbook_files.R.}
 
 \item{courses}{at least one of \code{"datascience"}, \code{"morse"},
-\code{"mathstat"}, \code{"msc"}, \code{"external"} indicating which handbook
-books to compile. Default is \code{c("datascience", "morse", "mathstat", "msc", "external")}.}
+\code{"mathstat"}, \code{"msc"}, \code{"external"}, "intercalated" indicating which handbook
+books to compile. Default is \code{c("datascience", "morse", "mathstat", "msc", "external", "intercalated")}.}
 
 \item{include_source_names}{should the draft include notes of what
 md file each part of the draft corresponds to? Default is
@@ -50,6 +50,9 @@ directory as follows:
 If \code{courses = "external"} or "\code{external}" is in \code{courses}, then the
 "common" sections that will be included in the handbook for
 external students are those specified by \code{external_common}
+
+If \code{courses = "intercalated"} then only the Rmd files under
+\code{intercalated/Rmd} are included.
 
 For the remainder courses:
 \itemize{
