@@ -5,9 +5,9 @@
 #'     common/html-*, as created by the script
 #'     download_convert_organize_handbook_files.R.
 #' @param courses at least one of `"datascience"`, `"morse"`,
-#'     `"mathstat"`, `"msc"`, `"external"` indicating which handbook
+#'     `"mathstat"`, `"msc"`, `"external"`, "intercalated" indicating which handbook
 #'     books to compile. Default is `c("datascience", "morse",
-#'     "mathstat", "msc", "external")`.
+#'     "mathstat", "msc", "external", "intercalated")`.
 #' @param include_source_names should the draft include notes of what
 #'     md file each part of the draft corresponds to? Default is
 #'     `FALSE`.
@@ -29,6 +29,9 @@
 #' If `courses = "external"` or "`external`" is in `courses`, then the
 #' "common" sections that will be included in the handbook for
 #' external students are those specified by `external_common`
+#'
+#' If `courses = "intercalated"` then only the Rmd files under
+#' \code{intercalated/Rmd"} are included.
 #'
 #' For the remainder courses:
 #'
@@ -57,14 +60,14 @@
 #'
 #' @export
 compile_book <- function(working_dir,
-                         courses = c("datascience", "morse", "mathstat", "msc", "external"),
+                         courses = c("datascience", "morse", "mathstat", "msc", "external", "intercalated"),
                          include_source_names = FALSE,
                          quiet = TRUE,
                          compress = TRUE,
                          draft_version = TRUE,
                          external_common) {
-    if (!all(courses %in% c("datascience", "morse", "mathstat", "msc", "external")))
-        stop("`courses` should be at least one of 'datascience', 'morse', 'mathstat', 'msc', and , 'external'")
+    if (!all(courses %in% c("datascience", "morse", "mathstat", "msc", "external", "intercalated")))
+        stop("`courses` should be at least one of 'datascience', 'morse', 'mathstat', 'msc', 'external', and 'intercalated'")
     working_dir <- path.expand(working_dir)
     ml_path <- file.path(working_dir, "module_lists.csv")
     module_lists <- try(read.csv(ml_path))
@@ -89,6 +92,9 @@ compile_book <- function(working_dir,
             }
             common_files <- file.path(file.path(working_dir, "common/Rmd"), external_common)
         }
+        if (isTRUE(courses[j] == "intercalated")) {
+            common_files <- NULL
+        }
         else {
             if (courses[j] == "msc") {
                 exclude <- grepl("-BSc|-EXTERNAL", common_files)
@@ -101,60 +107,72 @@ compile_book <- function(working_dir,
             common_files <- common_files[!exclude]
         }
 
-        ## exclude <- grepl(ifelse(courses[j] == "msc", "-BSc", "-MSc"), common_files)
+        has_common <- isTRUE(length(common_files) > 0)
         common_paths <- file.path(book, "9999-common.Rmd")
-        ## HTML
-        for (j in common_files) {
-            if (isTRUE(include_source_names)) {
-                cat(note(x = j, type = "BEGIN", color = "red", output_format = "html"), file = common_paths, append = TRUE)
-            }
-            cat("```{r child ='", j, "'}\n```\n\n", sep = "", file = common_paths, append = TRUE)
-            if (isTRUE(include_source_names)) {
-                cat(note(x = j, type = "END", color = "red", output_format = "html"), file = common_paths, append = TRUE)
+
+        compile_it <- function(format) {
+            file.copy(css_files, book)
+            try(bookdown::render_book(book,
+                                      output_format = format,
+                                      ## config_file = config,
+                                      output_dir = draft,
+                                      quiet = quiet))
+            file.remove(dir(book, "*.css", full.names = TRUE))
+            if (has_common) {
+                file.remove(common_paths)
             }
         }
-        file.copy(css_files, book)
-        ## file.copy(config, book)
-        try(bookdown::render_book(book,
-                                  output_format = "bookdown::gitbook",
-                                  ## config_file = config,
-                                  output_dir = draft,
-                                  quiet = quiet))
-        file.remove(dir(book, "*.css", full.names = TRUE))
-        ## file.remove(dir(book, "_bookdown.yml", full.names = TRUE))
-        file.remove(common_paths)
+
+        ## HTML
+        if (has_common) {
+            for (j in common_files) {
+                if (isTRUE(include_source_names)) {
+                    cat(note(x = j, type = "BEGIN", color = "red", output_format = "html"), file = common_paths, append = TRUE)
+                }
+                cat("```{r child ='", j, "'}\n```\n\n", sep = "", file = common_paths, append = TRUE)
+                if (isTRUE(include_source_names)) {
+                    cat(note(x = j, type = "END", color = "red", output_format = "html"), file = common_paths, append = TRUE)
+                }
+            }
+        }
+
+        compile_it("bookdown::gitbook")
 
         ## PDF
-        for (j in common_files) {
-            if (isTRUE(include_source_names)) {
-                cat(note(x = j, type = "BEGIN", color = "red", output_format = "pdf"), file = common_paths, append = TRUE)
-            }
-            cat("```{r child ='", j, "'}\n```\n\n", sep = "", file = common_paths, append = TRUE)
-            if (isTRUE(include_source_names)) {
-                cat(note(x = j, type = "END", color = "red", output_format = "pdf"), file = common_paths, append = TRUE)
+        if (has_common) {
+            for (j in common_files) {
+                if (isTRUE(include_source_names)) {
+                    cat(note(x = j, type = "BEGIN", color = "red", output_format = "pdf"), file = common_paths, append = TRUE)
+                }
+                cat("```{r child ='", j, "'}\n```\n\n", sep = "", file = common_paths, append = TRUE)
+                if (isTRUE(include_source_names)) {
+                    cat(note(x = j, type = "END", color = "red", output_format = "pdf"), file = common_paths, append = TRUE)
+                }
             }
         }
-        file.copy(css_files, book)
-        ## file.copy(config, book)
-        try(bookdown::render_book(book,
-                                  output_format = "bookdown::pdf_book",
-                                  ## config_file = config,
-                                  output_dir = draft,
-                                  quiet = quiet))
-        file.remove(dir(book, "*.css", full.names = TRUE))
-        ## file.remove(dir(book, "_bookdown.yml", full.names = TRUE))
-        file.remove(common_paths)
 
-        ## bookdown::render_book(book,
-        ##                       output_format = "bookdown::html_document2",
-        ##                       config_file = config)
+        compile_it("bookdown::pdf_book")
 
-        ## Compress
+        ## DOCX
+        if (has_common) {
+            for (j in common_files) {
+                if (isTRUE(include_source_names)) {
+                    cat(note(x = j, type = "BEGIN", color = "red", output_format = "word"), file = common_paths, append = TRUE)
+                }
+                cat("```{r child ='", j, "'}\n```\n\n", sep = "", file = common_paths, append = TRUE)
+                if (isTRUE(include_source_names)) {
+                    cat(note(x = j, type = "END", color = "red", output_format = "word"), file = common_paths, append = TRUE)
+                }
+            }
+        }
 
+        compile_it("bookdown::word_document2")
+
+        ## Copy assets
         if (dir.exists(assets)) {
             file.copy(assets, draft, recursive = TRUE)
         }
-
+        ## Compress
         if (isTRUE(compress)) {
             zip::zip(paste0(draft, "-", format(Sys.time(), format = "%d-%b-%Y"), ".zip"), files = draft, mode = "cherry-pick")
         }

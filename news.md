@@ -1,5 +1,11 @@
 # coursehand 0.2.1
 
+## Enhancement
+
++ `compile_book()` now supports the "intercalated" handbook.
+
+# coursehand 0.2.1
+
 ## Bug fix
 
 Each handbook is expected to have a distinct _bookdown.yml in its `Rmd/` directory.
