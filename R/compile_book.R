@@ -80,9 +80,10 @@ compile_book <- function(working_dir,
     drafts <- file.path(working_dir, paste0("drafts/", paste0(courses, "-handbook")))
     css_files <- dir(book_config, "*.css", full.names = TRUE)
     assets <- file.path(book_config, "assets")
-    common_files <- dir(file.path(working_dir, "common/Rmd"), full.names = TRUE)
 
     for (j in seq_along(courses)) {
+        cat("Starting compilation for", courses[j], "\n")
+        Sys.sleep(1)
         book <- books_rmd[j]
         draft <- drafts[j]
         ## Generate common
@@ -96,6 +97,7 @@ compile_book <- function(working_dir,
             common_files <- NULL
         }
         else {
+            common_files <- dir(file.path(working_dir, "common/Rmd"), full.names = TRUE)
             if (courses[j] == "msc") {
                 exclude <- grepl("-BSc|-EXTERNAL", common_files)
             }
@@ -106,6 +108,7 @@ compile_book <- function(working_dir,
             exclude <- grepl("0000-", common_files)
             common_files <- common_files[!exclude]
         }
+
 
         has_common <- isTRUE(length(common_files) > 0)
         common_paths <- file.path(book, "9999-common.Rmd")

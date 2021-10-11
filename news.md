@@ -1,3 +1,9 @@
+# coursehand 0.2.4
+
+## Bug fix
+
++ fixed a bug where `compile_book()` would not include the common sections fpr `"msc"` if that was called after another course.
+
 # coursehand 0.2.3
 
 ## Enhancement
