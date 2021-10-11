@@ -100,7 +100,7 @@ print.module_list <- function(x,
 }
 
 ## non-exported function to carr out some basic checks on a master module list
-check_module_list <- function(module_list, current_session = "21/22") {
+check_module_list <- function(module_list, current_session = "21/22", modules_with_differences = "EP304") {
 
     by_module <- lapply(unique(module_list$Code), function(x) {
         module_list[module_list$Code == x, ]
@@ -113,7 +113,13 @@ check_module_list <- function(module_list, current_session = "21/22") {
         names(out) <- m$Code[1]
         out
     })
+
+    if (length(modules_with_differences)) {
+        res[modules_with_differences] <- TRUE
+    }
+
     all_instances <- all(res)
+
     attr(all_instances, "modules") <- res
 
     ## Suspended session is the same and equal to current_session in duplicated codes

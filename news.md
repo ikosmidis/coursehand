@@ -1,4 +1,10 @@
-# coursehand 0.2.1
+# coursehand 0.2.3
+
+## Enhancement
+
++ non-exported `check_module_list()` gets `modules_with_differences` argument for modules to ignore.
+
+# coursehand 0.2.2
 
 ## Enhancement
 
