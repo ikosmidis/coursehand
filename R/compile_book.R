@@ -82,8 +82,6 @@ compile_book <- function(working_dir,
     assets <- file.path(book_config, "assets")
 
     for (j in seq_along(courses)) {
-        cat("Starting compilation for", courses[j], "\n")
-        Sys.sleep(1)
         book <- books_rmd[j]
         draft <- drafts[j]
         ## Generate common
