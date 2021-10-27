@@ -109,9 +109,6 @@ compile_book <- function(working_dir,
             }
         }
 
-##:ess-bp-start::conditional@:##
-browser(expr={TRUE})##:ess-bp-end:##
-
         has_common <- isTRUE(length(common_files) > 0)
         common_paths <- file.path(book, "9999-common.Rmd")
 
