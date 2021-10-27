@@ -91,22 +91,26 @@ compile_book <- function(working_dir,
             }
             common_files <- file.path(file.path(working_dir, "common/Rmd"), external_common)
         }
-        if (isTRUE(courses[j] == "intercalated")) {
-            common_files <- NULL
-        }
         else {
-            common_files <- dir(file.path(working_dir, "common/Rmd"), full.names = TRUE)
-            if (courses[j] == "msc") {
-                exclude <- grepl("-BSc|-EXTERNAL", common_files)
+            if (isTRUE(courses[j] == "intercalated")) {
+                common_files <- NULL
             }
             else {
-                exclude <- grepl("-MSc|-EXTERNAL", common_files)
+                common_files <- dir(file.path(working_dir, "common/Rmd"), full.names = TRUE)
+                if (courses[j] == "msc") {
+                    exclude <- grepl("-BSc|-EXTERNAL", common_files)
+                }
+                else {
+                    exclude <- grepl("-MSc|-EXTERNAL", common_files)
+                }
+                common_files <- common_files[!exclude]
+                exclude <- grepl("0000-", common_files)
+                common_files <- common_files[!exclude]
             }
-            common_files <- common_files[!exclude]
-            exclude <- grepl("0000-", common_files)
-            common_files <- common_files[!exclude]
         }
 
+##:ess-bp-start::conditional@:##
+browser(expr={TRUE})##:ess-bp-end:##
 
         has_common <- isTRUE(length(common_files) > 0)
         common_paths <- file.path(book, "9999-common.Rmd")
