@@ -1,3 +1,9 @@
+# coursehand 0.2.6
+
+## Bug fix
+
+* fixed a bug where modules with no links would be printed with an empty link.
+
 # coursehand 0.2.5
 
 ## Bug fix
