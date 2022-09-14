@@ -174,6 +174,7 @@ compile_book <- function(working_dir,
         if (dir.exists(assets)) {
             file.copy(assets, draft, recursive = TRUE)
         }
+
         ## Compress
         if (isTRUE(compress)) {
             zip::zip(paste0(draft, "-", format(Sys.time(), format = "%d-%b-%Y"), ".zip"), files = draft, mode = "cherry-pick")

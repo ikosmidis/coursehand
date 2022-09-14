@@ -1,3 +1,15 @@
+# coursehand 0.3.0
+
+## Enhancement
+
++ Added `check_links()` and `get_links_from_html()` functions for checking responses from vectors of URL links, and extracting links from html files, respectively.
+
++ `check_module_list()` is now documented and exported.
+
++ `check_module_list()` performs checks for the existence of URLs to module pages, and checks on responses from URLs to module pages.
+
++ Added `check_book_links()` for checking responses from the various URL links in the html versions of the handbooks.
+
 # coursehand 0.2.6
 
 ## Bug fix

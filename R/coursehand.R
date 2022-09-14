@@ -20,6 +20,8 @@
 #' @importFrom readr read_file
 #' @importFrom utils read.csv
 #' @importFrom stats setNames xtabs
+#' @importFrom curl curl_fetch_memory
+#' @importFrom rvest read_html html_attr html_nodes
 #' @import dplyr
 #' @import zip
 #'
