@@ -4,10 +4,15 @@
 #' @param no_page_response a character string to look for in the
 #'     server response that a page does not exist. Default is
 #'     "the page you requested could not be found".
+#' @param check_content a character string to look for in the server
+#'     response when a page exists. Default is `NULL` in which case no
+#'     checks on the content are made.
 #' @param verbose Should we get progress updates? Default is `TRUE`.
 #'
 #' @export
-check_links <- function(links, no_page_response = "the page you requested could not be found",
+check_links <- function(links,
+                        no_page_response = "the page you requested could not be found",
+                        check_content = NULL,
                         verbose = TRUE) {
     n_links <- length(links)
     errors <- logical(n_links)
@@ -26,6 +31,9 @@ check_links <- function(links, no_page_response = "the page you requested could 
                 chars <- rawToChar(content)
             }
             errors[j] <- any(grepl(no_page_response, chars))
+            if (!errors[j] & !is.null(check_content)) {
+                errors[j] <- !any(grepl(check_content, chars))
+            }
         }
         if (verbose) cat("Done!\n")
     }
@@ -239,9 +247,9 @@ check_book_links <- function(book_path,
 
 #' @export
 print.book_links_check <- function(x, ...) {
-    cat("Non existent links:\n")
+    cat("Non existent links:\n\n")
     print(lapply(x, function(xx) {
-        xx[!xx$response, c("URL", "response")]
+        xx$URL[!xx$response]
     }))
 }
 

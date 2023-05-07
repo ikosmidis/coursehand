@@ -6,8 +6,7 @@
 #' @param stream either `NA` (default) or one of `"G30A"`, `"G30B"`,
 #'     `"G30C"`, `"G30D"`.
 #' @param year either 1 (default), 2, 3, or 4.
-#' @param list one of `"Core"`, `"List A"`, `"List B"`, `"List C"`,
-#'     `"List D"`, `"List E"`, `"List F"`, `"Optional"`.
+#' @param list one of `"Core"`, `"List A"`, `"List B"`, ..., `"List Z"`, `"Optional"`.
 #' @param bsc either "Yes" (default) or "No", indicating whether the
 #'     request is about a list that is available for a BSc course or
 #'     not.
@@ -32,9 +31,9 @@ get_module_list <- function(module_list,
     stopifnot("`year` must be one of `1`, `2`, `3`, `4" = year %in% c(1, 2, 3, 4))
     course <- match.arg(course, c("datascience", "morse", "mathstat", "msc"))
     if (!is.na(stream)) {
-        stream <- match.arg(stream, c("G30A", "G30B", "G30C", "G30D"))
+        stream <- match.arg(stream, c("G30A", "G30B", "G30C", "G30D", "G30E"))
     }
-    list <- match.arg(list, c("Core", paste("List", LETTERS[1:6]), "Optional"))
+    list <- match.arg(list, c("Core", paste("List", LETTERS), "Optional"))
     bsc <- match.arg(bsc, c("Yes", "No"))
     mlevel <- match.arg(mlevel, c("Yes", "No"))
     if (isTRUE(is.character(module_list))) {
@@ -51,6 +50,14 @@ get_module_list <- function(module_list,
     }
     class(module_list) <- c("module_list", class(module_list))
     module_list
+}
+
+get_topic_list <- function(module_list, course = "morse") {
+    if (isTRUE(is.character(module_list))) {
+        module_list <- read.csv(module_list, stringsAsFactors = FALSE)
+    }
+    stopifnot("`module_list` must be either a path to the module lists or a `data.frame`" = isTRUE(is.data.frame(module_list)))
+    unique((module_list %>% filter(Course == course))[c("Course", "Stream", "BSc", "Mlevel", "Year", "List", "ListTopic")]) |> arrange(Year, Stream)
 }
 
 #' Print a module list as a markdown pipe table
