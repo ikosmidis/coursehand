@@ -73,12 +73,13 @@ check_module_list <- function(module_list,
                               current_session = "21/22",
                               modules_with_differences = "EP304",
                               no_page_response = "the page you requested could not be found",
-                              verbose = TRUE) {
+                              verbose = TRUE,
+                              check_urls = TRUE) {
 
     by_module <- lapply(unique(module_list$Code), function(x) {
         module_list[module_list$Code == x, ]
     })
-    to_check <- c("Code", "Name", "Suspended", "Suspended_Session", "URL", "Notes", "Term")
+    to_check <- c("Code", "Name", "Suspended", "Suspended_Session", "URL", "CATS", "Notes", "Term")
 
     ## duplicated records have the same info in to_check
     res <- sapply(by_module, function(m) {
@@ -133,10 +134,15 @@ check_module_list <- function(module_list,
     all_modules_have_URLs <- all(!no_url)
     attr(all_modules_have_URLs, "no_url") <- names(which(no_url))
 
-    urls <- urls[!no_url]
-    url_checks <- check_links(urls, no_page_response = no_page_response, verbose = verbose)
-    all_url_checks <- all(url_checks$response)
-    attr(all_url_checks, "url_checks") <- url_checks
+    if (check_urls) {
+        urls <- urls[!no_url]
+        url_checks <- check_links(urls, no_page_response = no_page_response, verbose = verbose)
+        all_url_checks <- all(url_checks$response)
+        attr(all_url_checks, "url_checks") <- url_checks
+    } else {
+        all_url_checks <- NA
+        attr(all_url_checks, "url_checks") <- NA
+    }
 
 
     checks <- list(year_is_numeric = is.numeric(module_list$Year),
@@ -204,7 +210,7 @@ print.module_list_checks <- function(x, ...) {
 
     cat("All module web-pages respond: ")
     cat(x$all_urls_respond, "\n")
-    if (!x$all_urls_respond) {
+    if (isTRUE(!x$all_urls_respond)) {
         cat("\tFailed: ")
         df <- attr(x$all_urls_respond, "url_checks")
         cat(df$URL[!df$response], "\n")
