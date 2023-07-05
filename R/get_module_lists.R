@@ -31,7 +31,7 @@ get_module_list <- function(module_list,
     stopifnot("`year` must be one of `1`, `2`, `3`, `4" = year %in% c(1, 2, 3, 4))
     course <- match.arg(course, c("datascience", "morse", "mathstat", "msc"))
     if (!is.na(stream)) {
-        stream <- match.arg(stream, c("G30A", "G30B", "G30C", "G30D", "G30E"))
+        stream <- match.arg(stream, c("G30A", "G30B", "G30C", "G30D", "G30E", "G30J"))
     }
     list <- match.arg(list, c("Core", paste("List", LETTERS), "Optional"))
     bsc <- match.arg(bsc, c("Yes", "No"))
