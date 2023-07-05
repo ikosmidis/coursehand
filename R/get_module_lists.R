@@ -27,7 +27,8 @@ get_module_list <- function(module_list,
                             list = "Core",
                             bsc = "Yes",
                             mlevel = "Yes",
-                            everything = FALSE) {
+                            everything = FALSE,
+                            arrange_by = "Code") {
     stopifnot("`year` must be one of `1`, `2`, `3`, `4" = year %in% c(1, 2, 3, 4))
     course <- match.arg(course, c("datascience", "morse", "mathstat", "msc"))
     if (!is.na(stream)) {
@@ -49,7 +50,7 @@ get_module_list <- function(module_list,
         }
     }
     class(module_list) <- c("module_list", class(module_list))
-    module_list
+    module_list |> arrange(pick(arrange_by))
 }
 
 get_topic_list <- function(module_list, course = "morse") {
