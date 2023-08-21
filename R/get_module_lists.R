@@ -50,7 +50,7 @@ get_module_list <- function(module_list,
         }
     }
     class(module_list) <- c("module_list", class(module_list))
-    module_list |> arrange(pick(arrange_by))
+    module_list |> arrange(ID, pick(arrange_by))
 }
 
 get_topic_list <- function(module_list, course = "morse") {
