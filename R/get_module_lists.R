@@ -50,7 +50,16 @@ get_module_list <- function(module_list,
         }
     }
     class(module_list) <- c("module_list", class(module_list))
-    module_list |> arrange(ID, pick(arrange_by))
+    dupl <- duplicated(module_list$ID)
+    ## If we need OR between modules (i.e. having the same ID), then
+    ## arrange first by ID to ensure that the OR modules are recorded
+    ## consecutively
+    if (any(dupl)) {
+        module_list |> arrange(ID, pick(arrange_by))
+    }
+    else {
+        module_list |> arrange(pick(arrange_by))
+    }
 }
 
 get_topic_list <- function(module_list, course = "morse") {
