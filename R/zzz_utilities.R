@@ -110,9 +110,17 @@ check_module_list <- function(module_list,
     ## Suspended and Suspended_Session pairs make sense
     susp <- sapply(by_module, function(m) {
         suspended <- m[, "Suspended"] == "Yes"
-        check1 <- m[suspended, "Suspended_Session"] == current_session
-        check2 <- m[!suspended, "Suspended_Session"] == "" | is.na(m[!suspended, "Suspended_Session"])
-        out <- all(check1 & check2)
+
+        if (isTRUE(length(unique(suspended)) == 1)) {
+            check1 <- m[suspended, "Suspended_Session"] == current_session
+            check2 <- m[!suspended, "Suspended_Session"] == "" | is.na(m[!suspended, "Suspended_Session"])
+            if (isTRUE(length(check1) == 0)) {
+                check1 <- rep(TRUE, length(check2))
+            }
+            out <- all(check1 & check2)
+        } else {
+            out <- FALSE
+        }
         names(out) <- m$Code[1]
         out
     })
