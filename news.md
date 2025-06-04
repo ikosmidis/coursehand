@@ -1,3 +1,10 @@
+# coursehand 0.3.1
+
+## Enhancement
+
++ Added support for new stream codes.
+
+
 # coursehand 0.3.0
 
 ## Enhancement
