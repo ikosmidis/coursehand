@@ -27,7 +27,7 @@
 #'
 #' @author Ioannis Kosmidis (aut, cre) \email{ioannis.kosmidis@warwick.ac.uk}
 #'
-NULL
+"_PACKAGE"
 
 utils::globalVariables(c("Course", "Year", "List", "BSc", "Mlevel", "Stream", "URL", "Notes",
                          "empty_url", "Name", "empty_notes", "Suspended", "Suspended_Session",

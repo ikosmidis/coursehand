@@ -7,6 +7,7 @@
 check_links(
   links,
   no_page_response = "the page you requested could not be found",
+  check_content = NULL,
   verbose = TRUE
 )
 }
@@ -16,6 +17,10 @@ check_links(
 \item{no_page_response}{a character string to look for in the
 server response that a page does not exist. Default is
 "the page you requested could not be found".}
+
+\item{check_content}{a character string to look for in the server
+response when a page exists. Default is \code{NULL} in which case no
+checks on the content are made.}
 
 \item{verbose}{Should we get progress updates? Default is \code{TRUE}.}
 }

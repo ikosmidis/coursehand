@@ -4,7 +4,7 @@
 #'     `data.frame`.
 #' @param course one of "datascience", "morse", "mathstat", "msc".
 #' @param stream either `NA` (default) or one of `"G30A"`, `"G30B"`,
-#'     `"G30C"`, `"G30D"`.
+#'     `"G30C"`, `"G30D"`, `"G30E"`, `"G30J"`, `"G30K"`, `"G30L"`, `"G40A"`, `"G40B"`, `"G40C"`.
 #' @param year either 1 (default), 2, 3, or 4.
 #' @param list one of `"Core"`, `"List A"`, `"List B"`, ..., `"List Z"`, `"Optional"`.
 #' @param bsc either "Yes" (default) or "No", indicating whether the
@@ -32,7 +32,7 @@ get_module_list <- function(module_list,
     stopifnot("`year` must be one of `1`, `2`, `3`, `4" = year %in% c(1, 2, 3, 4))
     course <- match.arg(course, c("datascience", "morse", "mathstat", "msc"))
     if (!is.na(stream)) {
-        stream <- match.arg(stream, c("G30A", "G30B", "G30C", "G30D", "G30E", "G30J"))
+        stream <- match.arg(stream, c("G30A", "G30B", "G30C", "G30D", "G30E", "G30J", "G30K", "G30L", "G40A", "G40B", "G40C"))
     }
     list <- match.arg(list, c("Core", paste("List", LETTERS), "Optional"))
     bsc <- match.arg(bsc, c("Yes", "No"))

@@ -9,7 +9,8 @@ check_module_list(
   current_session = "21/22",
   modules_with_differences = "EP304",
   no_page_response = "the page you requested could not be found",
-  verbose = TRUE
+  verbose = TRUE,
+  check_urls = TRUE
 )
 }
 \arguments{

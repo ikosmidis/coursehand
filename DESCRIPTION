@@ -13,4 +13,4 @@ Imports: clipr, dplyr, knitr, readr, rmarkdown, bookdown, wordcloud, zip, rvest,
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.3.2

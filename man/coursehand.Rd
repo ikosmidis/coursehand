@@ -2,6 +2,7 @@
 % Please edit documentation in R/coursehand.R
 \docType{package}
 \name{coursehand}
+\alias{coursehand-package}
 \alias{coursehand}
 \title{Methods to maintain the Course Handbooks of the Department of
 Statistics at University of Warwick}

@@ -12,7 +12,8 @@ get_module_list(
   list = "Core",
   bsc = "Yes",
   mlevel = "Yes",
-  everything = FALSE
+  everything = FALSE,
+  arrange_by = "Code"
 )
 }
 \arguments{
@@ -22,12 +23,11 @@ get_module_list(
 \item{course}{one of "datascience", "morse", "mathstat", "msc".}
 
 \item{stream}{either \code{NA} (default) or one of \code{"G30A"}, \code{"G30B"},
-\code{"G30C"}, \code{"G30D"}.}
+\code{"G30C"}, \code{"G30D"}, \code{"G30E"}, \code{"G30J"}, \code{"G30K"}, \code{"G30L"}, \code{"G40A"}, \code{"G40B"}, \code{"G40C"}.}
 
 \item{year}{either 1 (default), 2, 3, or 4.}
 
-\item{list}{one of \code{"Core"}, \code{"List A"}, \code{"List B"}, \code{"List C"},
-\code{"List D"}, \code{"List E"}, \code{"List F"}, \code{"Optional"}.}
+\item{list}{one of \code{"Core"}, \code{"List A"}, \code{"List B"}, ..., \code{"List Z"}, \code{"Optional"}.}
 
 \item{bsc}{either "Yes" (default) or "No", indicating whether the
 request is about a list that is available for a BSc course or
