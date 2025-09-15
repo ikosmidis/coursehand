@@ -81,6 +81,12 @@ compile_book <- function(working_dir,
     css_files <- dir(book_config, "*.css", full.names = TRUE)
     assets <- file.path(book_config, "assets")
 
+    if (isTRUE(draft_version)) {
+        file.copy(file.path(book_config, "preamble-draft.tex"), file.path(book_config, "preamble.tex"))
+    } else {
+        file.copy(file.path(book_config, "preamble-vanilla.tex"), file.path(book_config, "preamble.tex"))
+    }
+
     for (j in seq_along(courses)) {
         book <- books_rmd[j]
         draft <- drafts[j]
@@ -174,6 +180,9 @@ compile_book <- function(working_dir,
         if (dir.exists(assets)) {
             file.copy(assets, draft, recursive = TRUE)
         }
+
+        ## Clean up
+        file.remove(file.path(book_config, "preamble.tex"))
 
         ## Compress
         if (isTRUE(compress)) {
