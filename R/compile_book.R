@@ -84,9 +84,9 @@ compile_book <- function(working_dir,
     for (j in seq_along(courses)) {
 
         if (isTRUE(draft_version)) {
-            file.copy(file.path(book_config, "preamble-draft.tex"), file.path(book_config, "preamble.tex"))
+            file.copy(file.path(book_config, "preamble-draft.tex"), file.path(book_config, "preamble.tex"), overwrite = TRUE)
         } else {
-            file.copy(file.path(book_config, "preamble-vanilla.tex"), file.path(book_config, "preamble.tex"))
+            file.copy(file.path(book_config, "preamble-vanilla.tex"), file.path(book_config, "preamble.tex"), overwrite = TRUE)
         }
 
         book <- books_rmd[j]
