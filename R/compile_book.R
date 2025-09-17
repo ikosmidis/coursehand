@@ -81,13 +81,14 @@ compile_book <- function(working_dir,
     css_files <- dir(book_config, "*.css", full.names = TRUE)
     assets <- file.path(book_config, "assets")
 
-    if (isTRUE(draft_version)) {
-        file.copy(file.path(book_config, "preamble-draft.tex"), file.path(book_config, "preamble.tex"))
-    } else {
-        file.copy(file.path(book_config, "preamble-vanilla.tex"), file.path(book_config, "preamble.tex"))
-    }
-
     for (j in seq_along(courses)) {
+
+        if (isTRUE(draft_version)) {
+            file.copy(file.path(book_config, "preamble-draft.tex"), file.path(book_config, "preamble.tex"))
+        } else {
+            file.copy(file.path(book_config, "preamble-vanilla.tex"), file.path(book_config, "preamble.tex"))
+        }
+
         book <- books_rmd[j]
         draft <- drafts[j]
         ## Generate common
