@@ -1,3 +1,9 @@
+# coursehand 0.3.2
+
+## Enahncement
+
++ The suffix in the names of `zip` files from `compile_book()` is `YYYY-MM-DD.zip` instead of `DD-Mon-YYYY.zip`.
+
 # coursehand 0.3.1
 
 ## Enhancement

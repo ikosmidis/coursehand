@@ -187,7 +187,7 @@ compile_book <- function(working_dir,
 
         ## Compress
         if (isTRUE(compress)) {
-            zip::zip(paste0(draft, "-", format(Sys.time(), format = "%d-%b-%Y"), ".zip"), files = draft, mode = "cherry-pick")
+            zip::zip(paste0(draft, "-", format(Sys.time(), format = "%Y-%m-%d"), ".zip"), files = draft, mode = "cherry-pick")
         }
 
     }
